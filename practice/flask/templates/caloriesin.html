@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form id="user" method="POST" action="/sucscalin">
+    <div class="submit step">
+        <div class="question_title">
+            <h3>Please fill Calories in</h3>
+            <p></p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                  <div class="mb-3 form-floating">
+                    <input type="date" name="date" id="date" class="form-control required" placeholder="Date" min="2021-09-29" max="2021-10-29">
+                    <label for="date">Date</label>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="mb-3 form-floating">
+                        <div class="form-floating">
+                            <select class="form-select required" id="ID" name="ID" aria-label="ID">
+                                {% for var in ID %}
+                                <option value="{{ var }}">{{ var }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="ID">ID</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="mb-3 form-floating">
+                        <div class="form-floating">
+                            <select class="form-select required" id="FG" name="FG" aria-label="FG">
+                                {% for var in FoodGroup %}
+                                <option value="{{ var }}">{{ var }}</option>
+                                {% endfor %}
+
+                            </select>
+                            <label for="FG">Food Group</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-3 form-floating">
+                    <input type="text" name="FN" id="FN" class="form-control required" placeholder="Food Name">
+                    <label for="FN">Food Name</label>
+                </div>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /Step -->
+
+    </div>
+    <!-- /middle-wizard -->
+    <h1 style="text-align: center;">{{ msg }}</h1>
+
+    <div id="bottom-wizard">
+        <!-- <button type="button" name="backward" class="backward btn_1">Backward</button> -->
+
+        <button type="submit" name="process" class="submit btn_1">submit</button>
+        <button type="button" name="forward" class="forward btn_1 ciao">Add More</button> -->
+
+
+
+
+    </div>
+    <!-- /bottom-wizard -->
+</form>
+
+
+{% endblock %}

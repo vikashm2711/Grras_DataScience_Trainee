@@ -1,0 +1,374 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Microsoft Word - Calorie Tracker Coding Assignment, 3-3-21.docx</title>
+    <meta name="author" content="Lenovo" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        h1 {
+            color: #1E3662;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        .s1 {
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 28pt;
+        }
+
+        .s2 {
+            color: #F00;
+            font-family: Bahnschrift, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 16pt;
+        }
+
+        .s3 {
+            color: black;
+            font-family: "Lucida Sans", sans-serif;
+            font-style: italic;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11.5pt;
+        }
+
+        p {
+            color: black;
+            font-family: Bahnschrift, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+            margin: 0pt;
+        }
+
+        h3 {
+            color: black;
+            font-family: Bahnschrift, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s4 {
+            color: #2E5396;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 13pt;
+        }
+
+        .a {
+            color: #0562C1;
+            font-family: Bahnschrift, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: underline;
+            font-size: 11pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l1 {
+            padding-left: 0pt;
+        }
+
+        #l1>li>*:first-child:before {
+            content: " ";
+            color: black;
+            font-family: Symbol, serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        #l2 {
+            padding-left: 0pt;
+        }
+
+        #l2>li>*:first-child:before {
+            content: "o ";
+            color: black;
+            font-family: "Courier New", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        #l3 {
+            padding-left: 0pt;
+        }
+
+        #l3>li>*:first-child:before {
+            content: " ";
+            color: black;
+            font-family: Wingdings;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        #l4 {
+            padding-left: 0pt;
+        }
+
+        #l4>li>*:first-child:before {
+            content: " ";
+            color: black;
+            font-family: Wingdings;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        #l5 {
+            padding-left: 0pt;
+        }
+
+        #l5>li>*:first-child:before {
+            content: " ";
+            color: black;
+            font-family: Wingdings;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="padding-top: 6pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Developer Interview Round #3</h1>
+    <p class="s1" style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Project: Net Calorie
+        Tracker</p>
+    <p class="s2" style="padding-top: 12pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Instructions</p>
+    <p class="s3" style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Congratulation to the
+        application development round of your interview process with LMD Consulting India Pvt. Ltd. We are glad that you
+        are taking this assessment. The purpose of this exercise is to see your thought process on software development.
+        The project should not take more than 1-2 days of your time and it must be runnable.</p>
+    <p class="s3" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">You can create a git
+        account of your own and upload your code and any database scripts along with data for your application. This
+        application needs two collections for which the Excel sheets are provided. You can download this document along
+        with the Excel sheets to complete your exercise. You are given 7 days to complete this task. After 7 days and
+        after you have checked in the code and given us git clone access, an interviewer from LMD Consulting will
+        schedule a call with you to go over your code and your thought process behind the code.</p>
+    <p class="s3" style="padding-top: 8pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">We are interested in
+        seeing how you develop and think, so there is no right structure or answer, but you should be able to
+        reason/defend your style of work.</p>
+    <p class="s2" style="padding-top: 12pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Project Overview</p>
+    <p style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;line-height: 107%;text-align: left;">The objective of
+        this project is to develop a net calorie tracker. Net calories are based on the following formula:</p>
+    <h3 style="padding-top: 8pt;padding-left: 41pt;text-indent: 0pt;text-align: left;">Net Calories per day = Food
+        Calories per day – Basal Metabolic Rate – Activities Calories per day</h3>
+    <p style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;line-height: 107%;text-align: left;">Food that you eat
+        adds to the calories per day; activities consume calories per day and basal metabolic rate (BMR) is the calories
+        your burn without doing anything (by just being alive).</p>
+    <p style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;line-height: 107%;text-align: left;">You would need to
+        create a full project for this assignment (we will tell you what technologies to use for this web/app
+        development) do the following:</p>
+    <ul id="l1">
+        <li>
+            <p style="padding-top: 8pt;padding-left: 41pt;text-indent: -18pt;text-align: left;">Enter user information
+                from the frontend screen to a database</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Load food data table using a database
+                script (XLSX file attached)</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Load activities data table using a
+                database script (XLSX file attached)</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;line-height: 107%;text-align: left;">Create a form to enter
+                information for a particular date (you should be able to select up to 30 days in past)</p>
+            <p class="s4" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Formulas</p>
+            <p style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Formulas you need:</p>
+            <h3 style="padding-top: 9pt;padding-left: 41pt;text-indent: 0pt;line-height: 150%;text-align: left;">Men’s
+                BMR = 66.4730 + (13.7516 x weight in kg) + (5.0033 x height in cm) – (6.7550 x age in years) Women’s BMR
+                = 655.0955 + (9.5634 x weight in kg) + (1.8496 x height in cm) – (4.6756 x age in years) Calories out
+                for activities = MET Value * weight in kg * duration in hour</h3>
+            <p class="s4" style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Frontend
+                Requirements</p>
+            <p style="padding-top: 1pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">The front-end screen should
+                have:</p>
+        </li>
+        <li>
+            <p style="padding-top: 4pt;padding-left: 41pt;text-indent: -18pt;line-height: 107%;text-align: left;">
+                Ability to enter user information and then display a list of users – allow View Detail and Delete
+                functionality (Edit is not necessary)</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;line-height: 107%;text-align: left;">Once you select a user
+                from the list, allow food data to be entered for that user for a specific day (you should be able to
+                select up to 30 days in past):</p>
+            <ul id="l2">
+                <li>
+                    <p style="padding-left: 78pt;text-indent: -18pt;text-align: left;">Calories in:</p>
+                    <ul id="l3">
+                        <li>
+                            <p style="padding-left: 113pt;text-indent: -18pt;line-height: 107%;text-align: left;">Select
+                                food from a drop down, selection portion, and select time (breakfast, lunch, dinner or
+                                snack) – upon selection that should show the calories consumed</p>
+                        </li>
+                        <li>
+                            <p style="padding-left: 114pt;text-indent: -18pt;text-align: left;">Build this list for a
+                                day and at the end show the total calories in</p>
+                        </li>
+                        <li>
+                            <p style="padding-top: 1pt;padding-left: 114pt;text-indent: -18pt;text-align: left;">You
+                                should be able to enter multiple records for food consumed per day</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p style="padding-left: 78pt;text-indent: -18pt;text-align: left;">Calories out:</p>
+                    <ul id="l4">
+                        <li>
+                            <p style="padding-left: 113pt;text-indent: -18pt;line-height: 108%;text-align: left;">Select
+                                activities from a dropdown, select duration in minutes, and show calories burnt</p>
+                        </li>
+                        <li>
+                            <p style="padding-left: 113pt;text-indent: -18pt;line-height: 107%;text-align: left;">You
+                                should be able to enter multiple records for activities performed per day</p>
+                        </li>
+                        <li>
+                            <p style="padding-left: 113pt;text-indent: -18pt;text-align: left;">Show BMR calories based
+                                on calculation for that day</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p
+                        style="padding-top: 1pt;padding-left: 77pt;text-indent: -18pt;line-height: 14pt;text-align: left;">
+                        Net Calories</p>
+                    <ul id="l5">
+                        <li>
+                            <p style="padding-left: 113pt;text-indent: -18pt;line-height: 13pt;text-align: left;">Show
+                                difference of the two</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p style="padding-top: 1pt;padding-left: 77pt;text-indent: -18pt;text-align: left;">Save all data
+                        for the day in your database</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Allow different dates to be selected and
+                that will show data for that particular day</p>
+            <p class="s4" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Backend
+                Requirements</p>
+            <p style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;line-height: 108%;text-align: left;">The
+                backend needs to in technologies that you are comfortable with and you should build REST APIs for all of
+                the functionalities of the frontend. Be able to show API testing with Postman.</p>
+            <p class="s4" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Database
+                Requirements</p>
+            <p style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;line-height: 108%;text-align: left;">At least
+                the following attributes should be there in your database for storing static users, activities and food.
+                Additional tables/collections will depend on your application design.</p>
+            <p style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">User Collection –</p>
+        </li>
+        <li>
+            <p style="padding-top: 9pt;padding-left: 41pt;text-indent: -18pt;text-align: left;">ID</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Name</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Weight</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Height</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Sex</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Age (based on birthday)</p>
+            <p style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Activities Collection (for
+                importing activities in your DB)</p>
+        </li>
+        <li>
+            <p style="padding-top: 9pt;padding-left: 41pt;text-indent: -18pt;text-align: left;">ID</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Activity Name</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Activity Description</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">MET Value</p>
+            <p style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Food Collection (for
+                importing food calories in your DB):</p>
+        </li>
+        <li>
+            <p style="padding-top: 4pt;padding-left: 41pt;text-indent: -18pt;text-align: left;">ID</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Food Name</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Serving Size</p>
+        </li>
+        <li>
+            <p style="padding-left: 41pt;text-indent: -18pt;text-align: left;">Calories per Serving Size</p>
+            <p class="s4" style="padding-top: 9pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Next Steps</p>
+            <p style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;line-height: 108%;text-align: left;">If you
+                are done, please upload your code and database scripts on <b>github </b>and send us a URL to clone. We
+                will call you to review your code with you.</p>
+            <p style="padding-top: 8pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">You will be evaluated based
+                on:</p>
+        </li>
+        <li>
+            <p style="padding-top: 9pt;padding-left: 42pt;text-indent: -18pt;text-align: left;">Code quality</p>
+        </li>
+        <li>
+            <p style="padding-left: 42pt;text-indent: -18pt;text-align: left;">Code structure</p>
+        </li>
+        <li>
+            <p style="padding-left: 42pt;text-indent: -18pt;text-align: left;">Code economy</p>
+        </li>
+        <li>
+            <p style="padding-left: 42pt;text-indent: -18pt;text-align: left;">Database design</p>
+        </li>
+        <li>
+            <p style="padding-left: 42pt;text-indent: -18pt;text-align: left;">Performance consideration</p>
+        </li>
+    </ul>
+    <p style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;line-height: 108%;text-align: left;"><a
+            href="mailto:hr@lmdconsulting.com"
+            style=" color: black; font-family:Bahnschrift, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 11pt;"
+            target="_blank">If you have questions, please submit them to </a><a href="mailto:hr@lmdconsulting.com"
+            class="a" target="_blank">hr@lmdconsulting.com</a><span
+            style=" color: #0562C1; font-family:Bahnschrift, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 11pt;">
+        </span>and we will get back to you with answers. There is no interactive conversation/Skype available for this
+        project. Do the best you can with your understanding.</p>
+
+{% endblock %}

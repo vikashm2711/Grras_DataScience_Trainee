@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form id="user" method="POST" action="/">
+    <div class="submit step">
+        <div class="question_title">
+            <h3>Please fill with user details</h3>
+            <p></p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class="mb-3 form-floating">
+                    <input type="text" name="ID" id="ID" class="form-control required" placeholder="First Name">
+                    <label for="ID">ID</label>
+                </div>
+                <div class="mb-3 form-floating">
+                    <input type="text" name="name" id="name" class="form-control required" placeholder="Name">
+                    <label for="name">Name</label>
+                </div>
+                <div class="mb-3 form-floating">
+                    <input type="text" name="weight" id="weight" class="form-control required" placeholder="weight">
+                    <label for="weight">Weight</label>
+                </div>
+                <div class="mb-3 form-floating">
+                    <input type="text" name="height" id="height" class="form-control required" placeholder="height">
+                    <label for="height">Height</label>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="mb-3 form-floating">
+                        <div class="form-floating">
+                            <select class="form-select required" id="sex" name="sex" aria-label="Sex">
+
+                                <option value="F">Female</option>
+                                <option value="M">Male</option>
+                            </select>
+                            <label for="sex">Sex</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 form-floating">
+                    <input type="text" name="age" id="age" class="form-control required" placeholder="Age">
+                    <label for="Age">Age</label>
+                </div>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /Step -->
+
+    </div>
+    <!-- /middle-wizard -->
+    <h1 style="text-align: center;">{{ msg }}</h1>
+
+    <div id="bottom-wizard">
+        <!-- <button type="button" name="backward" class="backward btn_1">Backward</button> -->
+
+        <button type="submit" name="process" class="submit btn_1">Submit</button>
+        <!-- <button type="button" name="forward" class="forward btn_1 ciao">Show User</button> -->
+
+
+
+
+    </div>
+    <!-- /bottom-wizard -->
+</form>
+<center>
+    <div class="row">
+        <div class="column">
+            <form method="GET" action="/showuser" class="column">
+                <button style="align-items: center;" type="" name="" class="submit btn_1">Show User</button>
+            </form>
+        </div>
+        <br><br>
+
+        <form method="GET" action="/showalluser" class="column">
+            <div class="column">
+                <br><button type="" name="" class="forward btn_1">Show All User</button></div>
+        </form>
+    </div>
+</center>
+{% for var in data %}
+<h1 style="text-align: center;">{{ var }}</h1>
+{% endfor %}
+
+{% endblock %}

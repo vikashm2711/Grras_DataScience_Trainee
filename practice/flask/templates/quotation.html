@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Limmo - Register, Reservation, Questionare, Reviews, Quotation form Multipurpose Wizard with SMTP and HTML email support">
+    <meta name="author" content="Ansonika">
+    <title>Limmo - Register, Reservation, Questionare, Reviews, Quotation form Multipurpose Wizard</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="static/img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="static/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="static/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="static/img/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- GOOGLE WEB FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	<link href="css/vendors.css" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+</head>
+
+<body class="bg_color_gray">
+	
+	<div id="preloader">
+		<div data-loader="circle-side"></div>
+	</div><!-- /Preload -->
+	
+	<div id="loader_form">
+		<div data-loader="circle-side-2"></div>
+	</div><!-- /loader_form -->
+
+	<div class="min-vh-100 d-flex flex-column">
+	    <header>
+	        <div class="container-fluid">
+	            <div class="row d-flex align-items-center">
+	                <div class="col-4">
+	                    <a data-bs-toggle="offcanvas" href="#offcanvasNav" role="button" class="btn_nav"><i class="bi bi-list"></i></a>
+	                </div>
+	                <div class="col-4 text-center">
+	                    <a href="index.html"><img src="img/logo.svg" alt="" class="img-fluid" width="95" height="30"></a>
+	                </div>
+	                <div class="col-4">
+	                    <div id="social">
+	                        <ul>
+	                            <li><a href="#0"><i class="bi bi-facebook"></i></a></li>
+	                            <li><a href="#0"><i class="bi bi-twitter"></i></a></li>
+	                            <li><a href="#0"><i class="bi bi-instagram"></i></a></li>
+	                        </ul>
+	                    </div>
+	                    <!-- /social -->
+	                </div>
+	            </div>
+	        </div>
+	        <!-- /container -->
+	    </header>
+	    <!-- /header -->
+
+	    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNav">
+		    <div class="offcanvas-header">
+		        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		    </div>
+		    <div class="offcanvas-body">
+		        <ul>
+		            <li><a href="index.html" class="animated_link">Reservation</a></li>
+		            <li><a href="registration.html" class="animated_link">Registration</a></li>
+		            <li><a href="review.html" class="animated_link">Review</a></li>
+		            <li><a href="quotation.html" class="animated_link active">Quotation</a></li>
+		        </ul>
+		        <hr>
+		        <ul>
+		            <li><a href="about.html" class="animated_link">About</a></li>
+		            <li><a href="contact.html" class="animated_link">Contacts</a></li>
+		            <li><a href="#0" class="animated_link">Purchase this template</a></li>
+		        </ul>
+		    </div>
+		</div>
+		<!-- /offcanvas nav -->
+
+	    <div class="container-fluid d-flex flex-column my-auto">
+	        <div id="wizard_container">
+	            <div id="top-wizard">
+	                <div id="progressbar"></div>
+	            </div>
+	            <!-- /top-wizard -->
+	            <form id="wrapped" method="POST">
+	                <input id="website" name="website" type="text" value="">
+	                <!-- Leave input above for security protection, read docs for details -->
+
+	                <div id="middle-wizard">
+
+	                   <div class="step">
+						    <div class="question_title">
+						        <h3>What your poject need?</h3>
+						        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+						    </div>
+						    <div class="row justify-content-center">
+						        <div class="col-md-7">
+						        	   <div class="list_block">
+					                <ul>
+					                    <li>
+					                        <div class="checkbox_radio_container">
+					                            <input type="checkbox" id="question_1_opt_1" name="question_1[]" class="required" value="Google and Search Engines">
+					                            <label class="checkbox" for="question_1_opt_1"></label>
+					                            <label for="question_1_opt_1" class="wrapper">Custom interface and layout</label>
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <div class="checkbox_radio_container">
+					                            <input type="checkbox" id="question_1_opt_2" name="question_1[]" class="required" value="Emails or Newsletter">
+					                            <label class="checkbox" for="question_1_opt_2"></label>
+					                            <label for="question_1_opt_2" class="wrapper">Web site design</label>
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <div class="checkbox_radio_container">
+					                            <input type="checkbox" id="question_1_opt_3" name="question_1[]" class="required" value="Friends or other people">
+					                            <label class="checkbox" for="question_1_opt_3"></label>
+					                            <label for="question_1_opt_3" class="wrapper">Seo optimization</label>
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <div class="checkbox_radio_container">
+					                            <input type="checkbox" id="question_1_opt_4" name="question_1[]" class="required" value="Print Advertising">
+					                            <label class="checkbox" for="question_1_opt_4"></label>
+					                            <label for="question_1_opt_4" class="wrapper">CMS integrations (Wordpress)</label>
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <div class="checkbox_radio_container">
+					                            <input type="checkbox" id="question_1_opt_5" name="question_1[]" class="required" value="Print Advertising">
+					                            <label class="checkbox" for="question_1_opt_5"></label>
+					                            <label for="question_1_opt_5" class="wrapper">Other</label>
+					                        </div>
+					                    </li>
+					                </ul>
+					                <small><em>Multiple selections *</em></small>
+					            </div>
+						        </div>
+						    </div>
+						    <!-- /row -->
+						</div>
+						<!-- /Step -->
+
+	                    <div class="step">
+	                    	 <div class="question_title">
+						        <h3>Please provide any additional information</h3>
+						        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+						    </div>
+						     <div class="row justify-content-center">
+						        <div class="col-md-10">
+						           <div class="mb-3 form-floating">
+						                <textarea name="additional_message" id="additional_message" class="form-control required" placeholder="Write here a short description"></textarea>
+						                <label for="additional_message">Write here a short description</label>
+						            </div>
+						        </div>
+						    </div>
+						    <!-- /row -->
+	                    </div>
+	                    <!-- /Step -->
+
+	                    <div class="step">
+	                    	 <div class="question_title">
+						        <h3>What's your budget?</h3>
+						        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+						    </div>
+						     <div class="row justify-content-center">
+						        <div class="col-md-10">
+						          <div class="form-floating mb-3">
+									  <select class="form-select required" name="budget" id="budget" aria-label="budget">
+									    <option value selected>Please select a range</option>
+									   <option value="&lt;1000 USD">&lt;1000 USD</option>
+	                                    <option value="1000 - 1500 USD">1000 - 1500 USD</option>
+	                                    <option value="1500 - 2000 USD">1500 - 2000 USD</option>
+	                                   <option value="2000 - 2500 USD">2000 - 2500 USD</option>
+	                                    <option value="&gt;2500 USD">&gt;2500 USD</option>
+									  </select>
+									  <label for="budget">Your budget</label>
+									</div>
+						        </div>
+						    </div>
+						    <!-- /row -->
+	                    </div>
+	                    <!-- /Step -->
+
+	                    <div class="submit step">
+					    <div class="question_title">
+					        <h3>Please fill with your details</h3>
+					        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+					    </div>
+					    <div class="row justify-content-center">
+					        <div class="col-md-7">
+					            <div class="mb-3 form-floating">
+					                <input type="text" name="firstname" id="firstname" class="form-control required" placeholder="First Name">
+					                <label for="firstname">First Name</label>
+					            </div>
+					            <div class="mb-3 form-floating">
+					                <input type="text" name="lastname" id="lastname" class="form-control required" placeholder="Last Name">
+					                <label for="lastname">Last Name</label>
+					            </div>
+					            <div class="mb-3 form-floating">
+					                <input type="email" name="email" id="email" class="form-control required" placeholder="Your Email">
+					                <label for="email">Your Email</label>
+					            </div>
+					            <div class="form-floating mb-4">
+					                <input type="text" name="telephone" id="telephone" class="form-control required" placeholder="Your Telephone">
+					                <label for="telephone">Your Telephone</label>
+					            </div>
+					            <div class="terms">
+					                <label class="container_check">Please accept our <a href="#" data-bs-toggle="modal" data-bs-target="#terms-txt">Terms and conditions</a>
+					                    <input type="checkbox" name="terms" value="Yes" class="required">
+					                    <span class="checkmark"></span>
+					                </label>
+					            </div>
+					        </div>
+					    </div>
+					    <!-- /row -->
+					</div>
+					<!-- /Step -->
+					
+	                </div>
+	                <!-- /middle-wizard -->
+
+	                <div id="bottom-wizard">
+	                    <button type="button" name="backward" class="backward btn_1">Backward</button>
+	                    <button type="button" name="forward" class="forward btn_1">Forward</button>
+	                    <button type="submit" name="process" class="submit btn_1">Submit</button>
+	                </div>
+	                <!-- /bottom-wizard -->
+	            </form>
+	        </div>
+	        <!-- /Wizard container -->
+	    </div>
+	    <!-- /Container -->
+
+	<footer>
+	    <div class="container-fluid">
+	        <div class="row align-items-center">
+	            <div class="col-sm-6">
+	                <p>© 2021 Limmo | <a href="#0">Purchase Template</a></p>
+	            </div>
+	            <div class="col-sm-6 text-md-end">
+	                <a class="btn_help btn" href="#modal-help" id="modal_h"><i class="bi bi-question-circle"> Help</i></a>
+	            </div>
+	        </div>
+	        <!-- /Row -->
+	    </div>
+	    <!-- /Container -->
+	</footer>
+	<!-- /Footer -->
+
+</div>
+<!-- /flex-column -->
+
+<!-- Help form Popup -->
+<div id="modal-help" class="custom-modal zoom-anim-dialog mfp-hide">
+    <div class="small-dialog-header">
+        <h3>Ask Us Anything</h3>
+        <p class="mb-3">Please fill the form with your questions and<br>we will reply soon!</p>
+    </div>
+    <div id="message-help"></div>
+    <form method="post" action="assets/help.php" id="helpform" autocomplete="off">
+        <div class="modal-wrapper">
+            <div class="mb-3 form-floating">
+                <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Full Name">
+                <label for="fullname">Full Name</label>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="email" name="email_help" id="email_help" class="form-control" placeholder="Email Address">
+                <label for="email_help">Email Address</label>
+            </div>
+            <div class="mb-3 form-floating">
+                <textarea name="message_help" id="message_help" class="form-control" placeholder="Your Message"></textarea>
+                <label for="message_help">Your Message</label>
+            </div>
+            <div class="mb-5 form-floating">
+                <input class="form-control" type="text" name="verify_help" id="verify_help" placeholder="Are you human? 3 + 1 =">
+                <label for="verify_help">Are you human? 3 + 1 =</label>
+            </div>
+            <div class="text-center submit"><input type="submit" value="Submit" class="btn_1" id="submit-help"></div>
+        </div>
+    </form>
+</div>
+<!-- /Help form Popup -->
+
+<!-- Modal terms -->
+<div class="modal fade" id="terms-txt" tabindex="-1" role="dialog" aria-labelledby="termsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="termsLabel">Terms and conditions</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in <strong>nec quod novum accumsan</strong>, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus. Lorem ipsum dolor sit amet, <strong>in porro albucius qui</strong>, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+                <p>Lorem ipsum dolor sit amet, in porro albucius qui, in nec quod novum accumsan, mei ludus tamquam dolores id. No sit debitis meliore postulant, per ex prompta alterum sanctus, pro ne quod dicunt sensibus.</p>
+            </div>
+        </div>
+        <!-- /modal-content -->
+    </div>
+    <!-- /modal-dialog -->
+</div>
+<!-- /modal -->
+	
+<!-- COMMON SCRIPTS -->
+<script src="static/js/common_scripts.min.js"></script>
+<script src="static/js/common_functions.js"></script>
+<script src="static/assets/validate.js"></script>
+
+<!-- SPECIFIC SCRIPTS -->
+<script src="static/js/quotation_wizard_func.js"></script>
+
+</body>
+</html>
