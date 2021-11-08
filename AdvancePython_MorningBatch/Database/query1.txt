@@ -1,0 +1,503 @@
+
+Setting environment for using XAMPP for Windows.
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+ERROR 2002 (HY000): Can't connect to MySQL server on 'localhost' (10061)
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> \h
+
+General information about MariaDB can be found at
+http://mariadb.org
+
+List of all client commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+ego       (\G) Send command to MariaDB server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to MariaDB server.
+help      (\h) Display this help.
+notee     (\t) Don't write into outfile.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+
+For server side help, type 'help contents'
+
+MariaDB [(none)]> \c
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.026 sec)
+
+MariaDB [(none)]> use mysql;
+Database changed
+MariaDB [mysql]> show tables;
++---------------------------+
+| Tables_in_mysql           |
++---------------------------+
+| column_stats              |
+| columns_priv              |
+| db                        |
+| event                     |
+| func                      |
+| general_log               |
+| global_priv               |
+| gtid_slave_pos            |
+| help_category             |
+| help_keyword              |
+| help_relation             |
+| help_topic                |
+| index_stats               |
+| innodb_index_stats        |
+| innodb_table_stats        |
+| plugin                    |
+| proc                      |
+| procs_priv                |
+| proxies_priv              |
+| roles_mapping             |
+| servers                   |
+| slow_log                  |
+| table_stats               |
+| tables_priv               |
+| time_zone                 |
+| time_zone_leap_second     |
+| time_zone_name            |
+| time_zone_transition      |
+| time_zone_transition_type |
+| transaction_registry      |
+| user                      |
++---------------------------+
+31 rows in set (0.002 sec)
+
+MariaDB [mysql]> desc servers;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| Server_name | char(64) | NO   | PRI |         |       |
+| Host        | char(64) | NO   |     |         |       |
+| Db          | char(64) | NO   |     |         |       |
+| Username    | char(80) | NO   |     |         |       |
+| Password    | char(64) | NO   |     |         |       |
+| Port        | int(4)   | NO   |     | 0       |       |
+| Socket      | char(64) | NO   |     |         |       |
+| Wrapper     | char(64) | NO   |     |         |       |
+| Owner       | char(64) | NO   |     |         |       |
++-------------+----------+------+-----+---------+-------+
+9 rows in set (0.049 sec)
+
+MariaDB [mysql]> select * from servers;
+Empty set (0.052 sec)
+
+MariaDB [mysql]> select * from db;
++-----------+------------+------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+------------+-----------------------+------------------+------------------+----------------+---------------------+--------------------+--------------+------------+--------------+---------------------+
+| Host      | Db         | User | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Grant_priv | References_priv | Index_priv | Alter_priv | Create_tmp_table_priv | Lock_tables_priv | Create_view_priv | Show_view_priv | Create_routine_priv | Alter_routine_priv | Execute_priv | Event_priv | Trigger_priv | Delete_history_priv |
++-----------+------------+------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+------------+-----------------------+------------------+------------------+----------------+---------------------+--------------------+--------------+------------+--------------+---------------------+
+| %         | test       |      | Y           | Y           | Y           | Y           | Y           | Y         | N          | Y               | Y          | Y          | Y                     | Y                | Y                | Y              | Y                   | N                  | N            | Y          | Y            | Y                   |
+| %         | test\_%    |      | Y           | Y           | Y           | Y           | Y           | Y         | N          | Y               | Y          | Y          | Y                     | Y                | Y                | Y              | Y                   | N                  | N            | Y          | Y            | Y                   |
+| localhost | phpmyadmin | pma  | Y           | Y           | Y           | Y           | N           | N         | N          | N               | N          | N          | N                     | N                | N                | N              | N                   | N                  | N            | N          | N            | N                   |
++-----------+------------+------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+------------+-----------------------+------------------+------------------+----------------+---------------------+--------------------+--------------+------------+--------------+---------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [mysql]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database batch9am;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [(none)]> use batch9am;
+Database changed
+MariaDB [batch9am]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [batch9am]> create table person(aid varchar(100), name varchar(100),dose1 varchar(5), dose2 varchar(5));
+Query OK, 0 rows affected (0.033 sec)
+
+MariaDB [batch9am]> desc table'
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table'
+'' at line 1
+MariaDB [batch9am]> desc table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table' at line 1
+MariaDB [batch9am]> desc person;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| aid   | varchar(100) | YES  |     | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| dose1 | varchar(5)   | YES  |     | NULL    |       |
+| dose2 | varchar(5)   | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.059 sec)
+
+MariaDB [batch9am]> desc
+    -> person
+    -> ;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| aid   | varchar(100) | YES  |     | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| dose1 | varchar(5)   | YES  |     | NULL    |       |
+| dose2 | varchar(5)   | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.044 sec)
+
+MariaDB [batch9am]> insert into person values(123456789234, 'simran', 'yes', 'no');
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [batch9am]> select * from person;
++--------------+--------+-------+-------+
+| aid          | name   | dose1 | dose2 |
++--------------+--------+-------+-------+
+| 123456789234 | simran | yes   | no    |
++--------------+--------+-------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> insert into person values(123456789234, 'suraj', 'yes', 'no');
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [batch9am]> select * from person;
++--------------+--------+-------+-------+
+| aid          | name   | dose1 | dose2 |
++--------------+--------+-------+-------+
+| 123456789234 | simran | yes   | no    |
+| 123456789234 | suraj  | yes   | no    |
++--------------+--------+-------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [batch9am]> drop table person;
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [batch9am]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [batch9am]> create table person(aid varchar(100) primary key, name varchar(100) not null,dose1 varchar(5) not null, dose2 varchar(5));
+Query OK, 0 rows affected (0.045 sec)
+
+MariaDB [batch9am]> desc person;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| aid   | varchar(100) | NO   | PRI | NULL    |       |
+| name  | varchar(100) | NO   |     | NULL    |       |
+| dose1 | varchar(5)   | NO   |     | NULL    |       |
+| dose2 | varchar(5)   | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.046 sec)
+
+MariaDB [batch9am]> insert into person values('123456789234', 'suraj', 'yes', 'no');
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [batch9am]> insert into person values('123456789234', 'suraj', 'yes', 'no');
+ERROR 1062 (23000): Duplicate entry '123456789234' for key 'PRIMARY'
+MariaDB [batch9am]> insert into person values('123456712344', 'simran', 'yes', 'no');
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [batch9am]> select * from person;
++--------------+--------+-------+-------+
+| aid          | name   | dose1 | dose2 |
++--------------+--------+-------+-------+
+| 123456712344 | simran | yes   | no    |
+| 123456789234 | suraj  | yes   | no    |
++--------------+--------+-------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [batch9am]> insert into values('987612345678', 'krupali', 'yes', 'yes'), ('345612347890', 'prabhakar', 'yes', 'yes'), ('234512345678', 'yash', 'yes', 'yes'), (
+    ->
+    -> '567112340000', 'raj', 'no', 'no'), ('234512348901', 'rahul', 'yes', 'no');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'values('987612345678', 'krupali', 'yes', 'yes'), ('345612347890', 'prabhakar'...' at line 1
+MariaDB [batch9am]> insert into person values('987612345678', 'krupali', 'yes', 'yes'), ('345612347890', 'prabhakar', 'yes', 'yes'), ('234512345678', 'yash', 'yes', 'yes'), ('567112340000', 'raj', 'no', 'no'), ('234512348901', 'rahul', 'yes', 'no');
+Query OK, 5 rows affected (0.008 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [batch9am]> select * from person
+    -> ;
++--------------+-----------+-------+-------+
+| aid          | name      | dose1 | dose2 |
++--------------+-----------+-------+-------+
+| 123456712344 | simran    | yes   | no    |
+| 123456789234 | suraj     | yes   | no    |
+| 234512345678 | yash      | yes   | yes   |
+| 234512348901 | rahul     | yes   | no    |
+| 345612347890 | prabhakar | yes   | yes   |
+| 567112340000 | raj       | no    | no    |
+| 987612345678 | krupali   | yes   | yes   |
++--------------+-----------+-------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [batch9am]> SELECT * FROM PERSON;
++--------------+-----------+-------+-------+
+| aid          | name      | dose1 | dose2 |
++--------------+-----------+-------+-------+
+| 123456712344 | simran    | yes   | no    |
+| 123456789234 | suraj     | yes   | no    |
+| 234512345678 | yash      | yes   | yes   |
+| 234512348901 | rahul     | yes   | no    |
+| 345612347890 | prabhakar | yes   | yes   |
+| 567112340000 | raj       | no    | no    |
+| 987612345678 | krupali   | yes   | yes   |
++--------------+-----------+-------+-------+
+7 rows in set (0.001 sec)
+
+MariaDB [batch9am]> insert into person values('101023451234', 'priya', 'no');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [batch9am]> insert into person(aid, name, 'dose1') values('101023451234', 'priya', 'no');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''dose1') values('101023451234', 'priya', 'no')' at line 1
+MariaDB [batch9am]> insert into person(aid, name, dose1) values('101023451234', 'priya', 'no');
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [batch9am]> select * from person;
++--------------+-----------+-------+-------+
+| aid          | name      | dose1 | dose2 |
++--------------+-----------+-------+-------+
+| 101023451234 | priya     | no    | NULL  |
+| 123456712344 | simran    | yes   | no    |
+| 123456789234 | suraj     | yes   | no    |
+| 234512345678 | yash      | yes   | yes   |
+| 234512348901 | rahul     | yes   | no    |
+| 345612347890 | prabhakar | yes   | yes   |
+| 567112340000 | raj       | no    | no    |
+| 987612345678 | krupali   | yes   | yes   |
++--------------+-----------+-------+-------+
+8 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from person where dose1="yes";
++--------------+-----------+-------+-------+
+| aid          | name      | dose1 | dose2 |
++--------------+-----------+-------+-------+
+| 123456712344 | simran    | yes   | no    |
+| 123456789234 | suraj     | yes   | no    |
+| 234512345678 | yash      | yes   | yes   |
+| 234512348901 | rahul     | yes   | no    |
+| 345612347890 | prabhakar | yes   | yes   |
+| 987612345678 | krupali   | yes   | yes   |
++--------------+-----------+-------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select name from person where dose1="yes";
++-----------+
+| name      |
++-----------+
+| simran    |
+| suraj     |
+| yash      |
+| rahul     |
+| prabhakar |
+| krupali   |
++-----------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select aid, name from person where dose1="yes";
++--------------+-----------+
+| aid          | name      |
++--------------+-----------+
+| 123456712344 | simran    |
+| 123456789234 | suraj     |
+| 234512345678 | yash      |
+| 234512348901 | rahul     |
+| 345612347890 | prabhakar |
+| 987612345678 | krupali   |
++--------------+-----------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select "hi" from temp;
+ERROR 1146 (42S02): Table 'batch9am.temp' doesn't exist
+MariaDB [batch9am]> select "hi" from personl
+    -> ;
+ERROR 1146 (42S02): Table 'batch9am.personl' doesn't exist
+MariaDB [batch9am]> select "hi" from person;
++----+
+| hi |
++----+
+| hi |
+| hi |
+| hi |
+| hi |
+| hi |
+| hi |
+| hi |
+| hi |
++----+
+8 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select "hi" from person limit 1;
++----+
+| hi |
++----+
+| hi |
++----+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select * from person;
++--------------+-----------+-------+-------+
+| aid          | name      | dose1 | dose2 |
++--------------+-----------+-------+-------+
+| 101023451234 | priya     | no    | NULL  |
+| 123456712344 | simran    | yes   | no    |
+| 123456789234 | suraj     | yes   | no    |
+| 234512345678 | yash      | yes   | yes   |
+| 234512348901 | rahul     | yes   | no    |
+| 345612347890 | prabhakar | yes   | yes   |
+| 567112340000 | raj       | no    | no    |
+| 987612345678 | krupali   | yes   | yes   |
++--------------+-----------+-------+-------+
+8 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from person limit 5;
++--------------+--------+-------+-------+
+| aid          | name   | dose1 | dose2 |
++--------------+--------+-------+-------+
+| 101023451234 | priya  | no    | NULL  |
+| 123456712344 | simran | yes   | no    |
+| 123456789234 | suraj  | yes   | no    |
+| 234512345678 | yash   | yes   | yes   |
+| 234512348901 | rahul  | yes   | no    |
++--------------+--------+-------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select name,aid from person where dose1="yes";
++-----------+--------------+
+| name      | aid          |
++-----------+--------------+
+| simran    | 123456712344 |
+| suraj     | 123456789234 |
+| yash      | 234512345678 |
+| rahul     | 234512348901 |
+| prabhakar | 345612347890 |
+| krupali   | 987612345678 |
++-----------+--------------+
+6 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select name,aid from person where dose1="yes" and dose="no";
+ERROR 1054 (42S22): Unknown column 'dose' in 'where clause'
+MariaDB [batch9am]> select name,aid from person where dose1="yes" and dose2="no";
++--------+--------------+
+| name   | aid          |
++--------+--------------+
+| simran | 123456712344 |
+| suraj  | 123456789234 |
+| rahul  | 234512348901 |
++--------+--------------+
+3 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select name,aid from person where dose1="yes" or dose2="no";
++-----------+--------------+
+| name      | aid          |
++-----------+--------------+
+| simran    | 123456712344 |
+| suraj     | 123456789234 |
+| yash      | 234512345678 |
+| rahul     | 234512348901 |
+| prabhakar | 345612347890 |
+| raj       | 567112340000 |
+| krupali   | 987612345678 |
++-----------+--------------+
+7 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from person where dose1="yes" and dose2="no";
++--------------+--------+-------+-------+
+| aid          | name   | dose1 | dose2 |
++--------------+--------+-------+-------+
+| 123456712344 | simran | yes   | no    |
+| 123456789234 | suraj  | yes   | no    |
+| 234512348901 | rahul  | yes   | no    |
++--------------+--------+-------+-------+
+3 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from person where dose1="yes" or dose2="no";
++--------------+-----------+-------+-------+
+| aid          | name      | dose1 | dose2 |
++--------------+-----------+-------+-------+
+| 123456712344 | simran    | yes   | no    |
+| 123456789234 | suraj     | yes   | no    |
+| 234512345678 | yash      | yes   | yes   |
+| 234512348901 | rahul     | yes   | no    |
+| 345612347890 | prabhakar | yes   | yes   |
+| 567112340000 | raj       | no    | no    |
+| 987612345678 | krupali   | yes   | yes   |
++--------------+-----------+-------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from person where name="suraj" or name="yash" or name="rahul" or name="prabhakar"
+    -> or name="raj" or name="krupali";
++--------------+-----------+-------+-------+
+| aid          | name      | dose1 | dose2 |
++--------------+-----------+-------+-------+
+| 123456789234 | suraj     | yes   | no    |
+| 234512345678 | yash      | yes   | yes   |
+| 234512348901 | rahul     | yes   | no    |
+| 345612347890 | prabhakar | yes   | yes   |
+| 567112340000 | raj       | no    | no    |
+| 987612345678 | krupali   | yes   | yes   |
++--------------+-----------+-------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from person where not name="simran"
+    -> ;
++--------------+-----------+-------+-------+
+| aid          | name      | dose1 | dose2 |
++--------------+-----------+-------+-------+
+| 101023451234 | priya     | no    | NULL  |
+| 123456789234 | suraj     | yes   | no    |
+| 234512345678 | yash      | yes   | yes   |
+| 234512348901 | rahul     | yes   | no    |
+| 345612347890 | prabhakar | yes   | yes   |
+| 567112340000 | raj       | no    | no    |
+| 987612345678 | krupali   | yes   | yes   |
++--------------+-----------+-------+-------+
+7 rows in set (0.001 sec)
+
+MariaDB [batch9am]>

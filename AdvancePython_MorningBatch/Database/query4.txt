@@ -1,0 +1,367 @@
+
+Setting environment for using XAMPP for Windows.
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use batch9am;
+Database changed
+MariaDB [batch9am]> show tables;
++--------------------+
+| Tables_in_batch9am |
++--------------------+
+| address            |
+| fees               |
+| person             |
+| student            |
++--------------------+
+4 rows in set (0.004 sec)
+
+MariaDB [batch9am]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
+| 107 |    4 |  8000 |        0 |  3000 |
++-----+------+-------+----------+-------+
+7 rows in set (0.042 sec)
+
+MariaDB [batch9am]> select * from student limit 1;
++-----+--------+--------+------+
+| sid | name   | course | age  |
++-----+--------+--------+------+
+|   1 | Surbhi | Python |   20 |
++-----+--------+--------+------+
+1 row in set (0.007 sec)
+
+MariaDB [batch9am]> select * from address limit 1;
++-----+------+---------------+--------+-------+
+| aid | sid  | street        | city   | state |
++-----+------+---------------+--------+-------+
+| 101 |    1 | malviya nagar | jaipur | raj   |
++-----+------+---------------+--------+-------+
+1 row in set (0.011 sec)
+
+MariaDB [batch9am]> select * from student inner join fees;
++-----+-----------+----------------+------+-----+------+-------+----------+-------+
+| sid | name      | course         | age  | fid | sid  | fees  | discount | paid  |
++-----+-----------+----------------+------+-----+------+-------+----------+-------+
+|   1 | Surbhi    | Python         |   20 | 101 |    1 | 10000 |     1000 |  4000 |
+|   1 | Surbhi    | Python         |   20 | 102 |    2 | 12000 |     2500 |  5500 |
+|   1 | Surbhi    | Python         |   20 | 103 |    3 | 12500 |     1000 |  4500 |
+|   1 | Surbhi    | Python         |   20 | 104 |    5 |  8000 |        0 |  4000 |
+|   1 | Surbhi    | Python         |   20 | 105 |    6 |  9000 |        0 |  9000 |
+|   1 | Surbhi    | Python         |   20 | 106 |    8 | 15000 |     5000 | 10000 |
+|   1 | Surbhi    | Python         |   20 | 107 |    4 |  8000 |        0 |  3000 |
+|   2 | Yash      | DS             |   22 | 101 |    1 | 10000 |     1000 |  4000 |
+|   2 | Yash      | DS             |   22 | 102 |    2 | 12000 |     2500 |  5500 |
+|   2 | Yash      | DS             |   22 | 103 |    3 | 12500 |     1000 |  4500 |
+|   2 | Yash      | DS             |   22 | 104 |    5 |  8000 |        0 |  4000 |
+|   2 | Yash      | DS             |   22 | 105 |    6 |  9000 |        0 |  9000 |
+|   2 | Yash      | DS             |   22 | 106 |    8 | 15000 |     5000 | 10000 |
+|   2 | Yash      | DS             |   22 | 107 |    4 |  8000 |        0 |  3000 |
+|   3 | Krupali   | DS             |   23 | 101 |    1 | 10000 |     1000 |  4000 |
+|   3 | Krupali   | DS             |   23 | 102 |    2 | 12000 |     2500 |  5500 |
+|   3 | Krupali   | DS             |   23 | 103 |    3 | 12500 |     1000 |  4500 |
+|   3 | Krupali   | DS             |   23 | 104 |    5 |  8000 |        0 |  4000 |
+|   3 | Krupali   | DS             |   23 | 105 |    6 |  9000 |        0 |  9000 |
+|   3 | Krupali   | DS             |   23 | 106 |    8 | 15000 |     5000 | 10000 |
+|   3 | Krupali   | DS             |   23 | 107 |    4 |  8000 |        0 |  3000 |
+|   4 | Aman      | Advance Python |   22 | 101 |    1 | 10000 |     1000 |  4000 |
+|   4 | Aman      | Advance Python |   22 | 102 |    2 | 12000 |     2500 |  5500 |
+|   4 | Aman      | Advance Python |   22 | 103 |    3 | 12500 |     1000 |  4500 |
+|   4 | Aman      | Advance Python |   22 | 104 |    5 |  8000 |        0 |  4000 |
+|   4 | Aman      | Advance Python |   22 | 105 |    6 |  9000 |        0 |  9000 |
+|   4 | Aman      | Advance Python |   22 | 106 |    8 | 15000 |     5000 | 10000 |
+|   4 | Aman      | Advance Python |   22 | 107 |    4 |  8000 |        0 |  3000 |
+|   5 | Ashish    | AWS            |   24 | 101 |    1 | 10000 |     1000 |  4000 |
+|   5 | Ashish    | AWS            |   24 | 102 |    2 | 12000 |     2500 |  5500 |
+|   5 | Ashish    | AWS            |   24 | 103 |    3 | 12500 |     1000 |  4500 |
+|   5 | Ashish    | AWS            |   24 | 104 |    5 |  8000 |        0 |  4000 |
+|   5 | Ashish    | AWS            |   24 | 105 |    6 |  9000 |        0 |  9000 |
+|   5 | Ashish    | AWS            |   24 | 106 |    8 | 15000 |     5000 | 10000 |
+|   5 | Ashish    | AWS            |   24 | 107 |    4 |  8000 |        0 |  3000 |
+|   6 | Naman     | NULL           |   22 | 101 |    1 | 10000 |     1000 |  4000 |
+|   6 | Naman     | NULL           |   22 | 102 |    2 | 12000 |     2500 |  5500 |
+|   6 | Naman     | NULL           |   22 | 103 |    3 | 12500 |     1000 |  4500 |
+|   6 | Naman     | NULL           |   22 | 104 |    5 |  8000 |        0 |  4000 |
+|   6 | Naman     | NULL           |   22 | 105 |    6 |  9000 |        0 |  9000 |
+|   6 | Naman     | NULL           |   22 | 106 |    8 | 15000 |     5000 | 10000 |
+|   6 | Naman     | NULL           |   22 | 107 |    4 |  8000 |        0 |  3000 |
+|   7 | Muskan    | AWS            |   20 | 101 |    1 | 10000 |     1000 |  4000 |
+|   7 | Muskan    | AWS            |   20 | 102 |    2 | 12000 |     2500 |  5500 |
+|   7 | Muskan    | AWS            |   20 | 103 |    3 | 12500 |     1000 |  4500 |
+|   7 | Muskan    | AWS            |   20 | 104 |    5 |  8000 |        0 |  4000 |
+|   7 | Muskan    | AWS            |   20 | 105 |    6 |  9000 |        0 |  9000 |
+|   7 | Muskan    | AWS            |   20 | 106 |    8 | 15000 |     5000 | 10000 |
+|   7 | Muskan    | AWS            |   20 | 107 |    4 |  8000 |        0 |  3000 |
+|   8 | Priya     | linux          |   19 | 101 |    1 | 10000 |     1000 |  4000 |
+|   8 | Priya     | linux          |   19 | 102 |    2 | 12000 |     2500 |  5500 |
+|   8 | Priya     | linux          |   19 | 103 |    3 | 12500 |     1000 |  4500 |
+|   8 | Priya     | linux          |   19 | 104 |    5 |  8000 |        0 |  4000 |
+|   8 | Priya     | linux          |   19 | 105 |    6 |  9000 |        0 |  9000 |
+|   8 | Priya     | linux          |   19 | 106 |    8 | 15000 |     5000 | 10000 |
+|   8 | Priya     | linux          |   19 | 107 |    4 |  8000 |        0 |  3000 |
+|   9 | Prabhakar | Python         |   20 | 101 |    1 | 10000 |     1000 |  4000 |
+|   9 | Prabhakar | Python         |   20 | 102 |    2 | 12000 |     2500 |  5500 |
+|   9 | Prabhakar | Python         |   20 | 103 |    3 | 12500 |     1000 |  4500 |
+|   9 | Prabhakar | Python         |   20 | 104 |    5 |  8000 |        0 |  4000 |
+|   9 | Prabhakar | Python         |   20 | 105 |    6 |  9000 |        0 |  9000 |
+|   9 | Prabhakar | Python         |   20 | 106 |    8 | 15000 |     5000 | 10000 |
+|   9 | Prabhakar | Python         |   20 | 107 |    4 |  8000 |        0 |  3000 |
++-----+-----------+----------------+------+-----+------+-------+----------+-------+
+63 rows in set (0.002 sec)
+
+MariaDB [batch9am]> select * from student inner join fees on student.sid = fees.sid;
++-----+---------+----------------+------+-----+------+-------+----------+-------+
+| sid | name    | course         | age  | fid | sid  | fees  | discount | paid  |
++-----+---------+----------------+------+-----+------+-------+----------+-------+
+|   1 | Surbhi  | Python         |   20 | 101 |    1 | 10000 |     1000 |  4000 |
+|   2 | Yash    | DS             |   22 | 102 |    2 | 12000 |     2500 |  5500 |
+|   3 | Krupali | DS             |   23 | 103 |    3 | 12500 |     1000 |  4500 |
+|   5 | Ashish  | AWS            |   24 | 104 |    5 |  8000 |        0 |  4000 |
+|   6 | Naman   | NULL           |   22 | 105 |    6 |  9000 |        0 |  9000 |
+|   8 | Priya   | linux          |   19 | 106 |    8 | 15000 |     5000 | 10000 |
+|   4 | Aman    | Advance Python |   22 | 107 |    4 |  8000 |        0 |  3000 |
++-----+---------+----------------+------+-----+------+-------+----------+-------+
+7 rows in set (0.002 sec)
+
+MariaDB [batch9am]> select sid, name, fees from student inner join fees on student.sid = fees.sid;
+ERROR 1052 (23000): Column 'sid' in field list is ambiguous
+MariaDB [batch9am]> select student.sid, name, fees from student inner join fees on student.sid = fees.sid;
++-----+---------+-------+
+| sid | name    | fees  |
++-----+---------+-------+
+|   1 | Surbhi  | 10000 |
+|   2 | Yash    | 12000 |
+|   3 | Krupali | 12500 |
+|   5 | Ashish  |  8000 |
+|   6 | Naman   |  9000 |
+|   8 | Priya   | 15000 |
+|   4 | Aman    |  8000 |
++-----+---------+-------+
+7 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select student.sid, name, fees, paid from student inner join fees on student.sid = fees.sid;
++-----+---------+-------+-------+
+| sid | name    | fees  | paid  |
++-----+---------+-------+-------+
+|   1 | Surbhi  | 10000 |  4000 |
+|   2 | Yash    | 12000 |  5500 |
+|   3 | Krupali | 12500 |  4500 |
+|   5 | Ashish  |  8000 |  4000 |
+|   6 | Naman   |  9000 |  9000 |
+|   8 | Priya   | 15000 | 10000 |
+|   4 | Aman    |  8000 |  3000 |
++-----+---------+-------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student left join address on student.sid = address.sid;
++-----+-----------+----------------+------+------+------+----------------+--------+-------+
+| sid | name      | course         | age  | aid  | sid  | street         | city   | state |
++-----+-----------+----------------+------+------+------+----------------+--------+-------+
+|   1 | Surbhi    | Python         |   20 |  101 |    1 | malviya nagar  | jaipur | raj   |
+|   2 | Yash      | DS             |   22 |  102 |    2 | raja park      | jaipur | raj   |
+|   3 | Krupali   | DS             |   23 | NULL | NULL | NULL           | NULL   | NULL  |
+|   4 | Aman      | Advance Python |   22 |  103 |    4 | tilak nagar    | delhi  | delhi |
+|   5 | Ashish    | AWS            |   24 | NULL | NULL | NULL           | NULL   | NULL  |
+|   6 | Naman     | NULL           |   22 |  104 |    6 | patel nagar    | indore | mp    |
+|   7 | Muskan    | AWS            |   20 |  105 |    7 | karol bagh     | delhi  | delhi |
+|   8 | Priya     | linux          |   19 | NULL | NULL | NULL           | NULL   | NULL  |
+|   9 | Prabhakar | Python         |   20 |  106 |    9 | vaishali nagar | jaipur | raj   |
++-----+-----------+----------------+------+------+------+----------------+--------+-------+
+9 rows in set (0.002 sec)
+
+MariaDB [batch9am]> select * from student right join address on student.sid = address.sid;
++------+-----------+----------------+------+-----+------+----------------+--------+-------+
+| sid  | name      | course         | age  | aid | sid  | street         | city   | state |
++------+-----------+----------------+------+-----+------+----------------+--------+-------+
+|    1 | Surbhi    | Python         |   20 | 101 |    1 | malviya nagar  | jaipur | raj   |
+|    2 | Yash      | DS             |   22 | 102 |    2 | raja park      | jaipur | raj   |
+|    4 | Aman      | Advance Python |   22 | 103 |    4 | tilak nagar    | delhi  | delhi |
+|    6 | Naman     | NULL           |   22 | 104 |    6 | patel nagar    | indore | mp    |
+|    7 | Muskan    | AWS            |   20 | 105 |    7 | karol bagh     | delhi  | delhi |
+|    9 | Prabhakar | Python         |   20 | 106 |    9 | vaishali nagar | jaipur | raj   |
++------+-----------+----------------+------+-----+------+----------------+--------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from fees right join address on student.sid = address.sid;
+ERROR 1054 (42S22): Unknown column 'student.sid' in 'on clause'
+MariaDB [batch9am]> select * from fees right join address on fees.sid = address.sid;
++------+------+-------+----------+------+-----+------+----------------+--------+-------+
+| fid  | sid  | fees  | discount | paid | aid | sid  | street         | city   | state |
++------+------+-------+----------+------+-----+------+----------------+--------+-------+
+|  101 |    1 | 10000 |     1000 | 4000 | 101 |    1 | malviya nagar  | jaipur | raj   |
+|  102 |    2 | 12000 |     2500 | 5500 | 102 |    2 | raja park      | jaipur | raj   |
+|  107 |    4 |  8000 |        0 | 3000 | 103 |    4 | tilak nagar    | delhi  | delhi |
+|  105 |    6 |  9000 |        0 | 9000 | 104 |    6 | patel nagar    | indore | mp    |
+| NULL | NULL |  NULL |     NULL | NULL | 105 |    7 | karol bagh     | delhi  | delhi |
+| NULL | NULL |  NULL |     NULL | NULL | 106 |    9 | vaishali nagar | jaipur | raj   |
++------+------+-------+----------+------+-----+------+----------------+--------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student join fees;
++-----+-----------+----------------+------+-----+------+-------+----------+-------+
+| sid | name      | course         | age  | fid | sid  | fees  | discount | paid  |
++-----+-----------+----------------+------+-----+------+-------+----------+-------+
+|   1 | Surbhi    | Python         |   20 | 101 |    1 | 10000 |     1000 |  4000 |
+|   1 | Surbhi    | Python         |   20 | 102 |    2 | 12000 |     2500 |  5500 |
+|   1 | Surbhi    | Python         |   20 | 103 |    3 | 12500 |     1000 |  4500 |
+|   1 | Surbhi    | Python         |   20 | 104 |    5 |  8000 |        0 |  4000 |
+|   1 | Surbhi    | Python         |   20 | 105 |    6 |  9000 |        0 |  9000 |
+|   1 | Surbhi    | Python         |   20 | 106 |    8 | 15000 |     5000 | 10000 |
+|   1 | Surbhi    | Python         |   20 | 107 |    4 |  8000 |        0 |  3000 |
+|   2 | Yash      | DS             |   22 | 101 |    1 | 10000 |     1000 |  4000 |
+|   2 | Yash      | DS             |   22 | 102 |    2 | 12000 |     2500 |  5500 |
+|   2 | Yash      | DS             |   22 | 103 |    3 | 12500 |     1000 |  4500 |
+|   2 | Yash      | DS             |   22 | 104 |    5 |  8000 |        0 |  4000 |
+|   2 | Yash      | DS             |   22 | 105 |    6 |  9000 |        0 |  9000 |
+|   2 | Yash      | DS             |   22 | 106 |    8 | 15000 |     5000 | 10000 |
+|   2 | Yash      | DS             |   22 | 107 |    4 |  8000 |        0 |  3000 |
+|   3 | Krupali   | DS             |   23 | 101 |    1 | 10000 |     1000 |  4000 |
+|   3 | Krupali   | DS             |   23 | 102 |    2 | 12000 |     2500 |  5500 |
+|   3 | Krupali   | DS             |   23 | 103 |    3 | 12500 |     1000 |  4500 |
+|   3 | Krupali   | DS             |   23 | 104 |    5 |  8000 |        0 |  4000 |
+|   3 | Krupali   | DS             |   23 | 105 |    6 |  9000 |        0 |  9000 |
+|   3 | Krupali   | DS             |   23 | 106 |    8 | 15000 |     5000 | 10000 |
+|   3 | Krupali   | DS             |   23 | 107 |    4 |  8000 |        0 |  3000 |
+|   4 | Aman      | Advance Python |   22 | 101 |    1 | 10000 |     1000 |  4000 |
+|   4 | Aman      | Advance Python |   22 | 102 |    2 | 12000 |     2500 |  5500 |
+|   4 | Aman      | Advance Python |   22 | 103 |    3 | 12500 |     1000 |  4500 |
+|   4 | Aman      | Advance Python |   22 | 104 |    5 |  8000 |        0 |  4000 |
+|   4 | Aman      | Advance Python |   22 | 105 |    6 |  9000 |        0 |  9000 |
+|   4 | Aman      | Advance Python |   22 | 106 |    8 | 15000 |     5000 | 10000 |
+|   4 | Aman      | Advance Python |   22 | 107 |    4 |  8000 |        0 |  3000 |
+|   5 | Ashish    | AWS            |   24 | 101 |    1 | 10000 |     1000 |  4000 |
+|   5 | Ashish    | AWS            |   24 | 102 |    2 | 12000 |     2500 |  5500 |
+|   5 | Ashish    | AWS            |   24 | 103 |    3 | 12500 |     1000 |  4500 |
+|   5 | Ashish    | AWS            |   24 | 104 |    5 |  8000 |        0 |  4000 |
+|   5 | Ashish    | AWS            |   24 | 105 |    6 |  9000 |        0 |  9000 |
+|   5 | Ashish    | AWS            |   24 | 106 |    8 | 15000 |     5000 | 10000 |
+|   5 | Ashish    | AWS            |   24 | 107 |    4 |  8000 |        0 |  3000 |
+|   6 | Naman     | NULL           |   22 | 101 |    1 | 10000 |     1000 |  4000 |
+|   6 | Naman     | NULL           |   22 | 102 |    2 | 12000 |     2500 |  5500 |
+|   6 | Naman     | NULL           |   22 | 103 |    3 | 12500 |     1000 |  4500 |
+|   6 | Naman     | NULL           |   22 | 104 |    5 |  8000 |        0 |  4000 |
+|   6 | Naman     | NULL           |   22 | 105 |    6 |  9000 |        0 |  9000 |
+|   6 | Naman     | NULL           |   22 | 106 |    8 | 15000 |     5000 | 10000 |
+|   6 | Naman     | NULL           |   22 | 107 |    4 |  8000 |        0 |  3000 |
+|   7 | Muskan    | AWS            |   20 | 101 |    1 | 10000 |     1000 |  4000 |
+|   7 | Muskan    | AWS            |   20 | 102 |    2 | 12000 |     2500 |  5500 |
+|   7 | Muskan    | AWS            |   20 | 103 |    3 | 12500 |     1000 |  4500 |
+|   7 | Muskan    | AWS            |   20 | 104 |    5 |  8000 |        0 |  4000 |
+|   7 | Muskan    | AWS            |   20 | 105 |    6 |  9000 |        0 |  9000 |
+|   7 | Muskan    | AWS            |   20 | 106 |    8 | 15000 |     5000 | 10000 |
+|   7 | Muskan    | AWS            |   20 | 107 |    4 |  8000 |        0 |  3000 |
+|   8 | Priya     | linux          |   19 | 101 |    1 | 10000 |     1000 |  4000 |
+|   8 | Priya     | linux          |   19 | 102 |    2 | 12000 |     2500 |  5500 |
+|   8 | Priya     | linux          |   19 | 103 |    3 | 12500 |     1000 |  4500 |
+|   8 | Priya     | linux          |   19 | 104 |    5 |  8000 |        0 |  4000 |
+|   8 | Priya     | linux          |   19 | 105 |    6 |  9000 |        0 |  9000 |
+|   8 | Priya     | linux          |   19 | 106 |    8 | 15000 |     5000 | 10000 |
+|   8 | Priya     | linux          |   19 | 107 |    4 |  8000 |        0 |  3000 |
+|   9 | Prabhakar | Python         |   20 | 101 |    1 | 10000 |     1000 |  4000 |
+|   9 | Prabhakar | Python         |   20 | 102 |    2 | 12000 |     2500 |  5500 |
+|   9 | Prabhakar | Python         |   20 | 103 |    3 | 12500 |     1000 |  4500 |
+|   9 | Prabhakar | Python         |   20 | 104 |    5 |  8000 |        0 |  4000 |
+|   9 | Prabhakar | Python         |   20 | 105 |    6 |  9000 |        0 |  9000 |
+|   9 | Prabhakar | Python         |   20 | 106 |    8 | 15000 |     5000 | 10000 |
+|   9 | Prabhakar | Python         |   20 | 107 |    4 |  8000 |        0 |  3000 |
++-----+-----------+----------------+------+-----+------+-------+----------+-------+
+63 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select name, course from student inner join address on student.sid = address.sid where city="jaipur" and (course="python" or course="advance python" or course="ds");
++-----------+--------+
+| name      | course |
++-----------+--------+
+| Surbhi    | Python |
+| Yash      | DS     |
+| Prabhakar | Python |
++-----------+--------+
+3 rows in set (0.002 sec)
+
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000 and (select fees-paid from fees)>4000;
+ERROR 1242 (21000): Subquery returns more than 1 row
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000;
++-----+--------+----------------+---------------+--------+-------+
+| sid | name   | course         | street        | city   | fees  |
++-----+--------+----------------+---------------+--------+-------+
+|   1 | Surbhi | Python         | malviya nagar | jaipur | 10000 |
+|   4 | Aman   | Advance Python | tilak nagar   | delhi  |  8000 |
++-----+--------+----------------+---------------+--------+-------+
+2 rows in set (0.013 sec)
+
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000;
++-----+--------+----------------+---------------+--------+-------+-----------+
+| sid | name   | course         | street        | city   | fees  | fees-paid |
++-----+--------+----------------+---------------+--------+-------+-----------+
+|   1 | Surbhi | Python         | malviya nagar | jaipur | 10000 |      6000 |
+|   4 | Aman   | Advance Python | tilak nagar   | delhi  |  8000 |      5000 |
++-----+--------+----------------+---------------+--------+-------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid as f from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000;
++-----+--------+----------------+---------------+--------+-------+------+
+| sid | name   | course         | street        | city   | fees  | f    |
++-----+--------+----------------+---------------+--------+-------+------+
+|   1 | Surbhi | Python         | malviya nagar | jaipur | 10000 | 6000 |
+|   4 | Aman   | Advance Python | tilak nagar   | delhi  |  8000 | 5000 |
++-----+--------+----------------+---------------+--------+-------+------+
+2 rows in set (0.012 sec)
+
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid as f from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000 and f>4000;
+ERROR 1054 (42S22): Unknown column 'f' in 'where clause'
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid as f from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000 and fees.f>4000;
+ERROR 1054 (42S22): Unknown column 'fees.f' in 'where clause'
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid as f from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000;
++-----+--------+----------------+---------------+--------+-------+------+
+| sid | name   | course         | street        | city   | fees  | f    |
++-----+--------+----------------+---------------+--------+-------+------+
+|   1 | Surbhi | Python         | malviya nagar | jaipur | 10000 | 6000 |
+|   4 | Aman   | Advance Python | tilak nagar   | delhi  |  8000 | 5000 |
++-----+--------+----------------+---------------+--------+-------+------+
+2 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid as f from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000 and (select fees-paid as f from fees);
+ERROR 1242 (21000): Subquery returns more than 1 row
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid as f from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000 and f>40000;
+ERROR 1054 (42S22): Unknown column 'f' in 'where clause'
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid as f from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000 and (fees-paid)>4000;
++-----+--------+----------------+---------------+--------+-------+------+
+| sid | name   | course         | street        | city   | fees  | f    |
++-----+--------+----------------+---------------+--------+-------+------+
+|   1 | Surbhi | Python         | malviya nagar | jaipur | 10000 | 6000 |
+|   4 | Aman   | Advance Python | tilak nagar   | delhi  |  8000 | 5000 |
++-----+--------+----------------+---------------+--------+-------+------+
+2 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select student.sid, name, course, street, city, fees, fees-paid from student inner join address on student.sid = address.sid inner join fees on student.sid = fees.sid where paid<5000 and (fees-paid)>4000;
++-----+--------+----------------+---------------+--------+-------+-----------+
+| sid | name   | course         | street        | city   | fees  | fees-paid |
++-----+--------+----------------+---------------+--------+-------+-----------+
+|   1 | Surbhi | Python         | malviya nagar | jaipur | 10000 |      6000 |
+|   4 | Aman   | Advance Python | tilak nagar   | delhi  |  8000 |      5000 |
++-----+--------+----------------+---------------+--------+-------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [batch9am]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p < C:/batches/schema.sql
+The system cannot find the file specified.
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+#

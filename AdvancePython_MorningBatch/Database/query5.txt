@@ -1,0 +1,778 @@
+
+Setting environment for using XAMPP for Windows.
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 12
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use batch9am;
+Database changed
+MariaDB [batch9am]> show tables;
++--------------------+
+| Tables_in_batch9am |
++--------------------+
+| address            |
+| fees               |
+| person             |
+| student            |
++--------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [batch9am]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 13
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create 'b845am'@'localhost' identified by 'password'l
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''b845am'@'localhost' identified by 'password'l' at line 1
+MariaDB [(none)]> create 'b845am'@'localhost' identified by 'password';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''b845am'@'localhost' identified by 'password'' at line 1
+MariaDB [(none)]> create b845am@'localhost' identified by 'password';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'b845am@'localhost' identified by 'password'' at line 1
+MariaDB [(none)]> create user 'b845am'@'localhost' identified by 'password';
+Query OK, 0 rows affected (0.011 sec)
+
+MariaDB [(none)]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u b845am -p
+Enter password: ********
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 14
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+2 rows in set (0.007 sec)
+
+MariaDB [(none)]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 15
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> select user, host from mysql.users;
+ERROR 1146 (42S02): Table 'mysql.users' doesn't exist
+MariaDB [(none)]> select user, host from mysql.user;
++--------+-----------+
+| User   | Host      |
++--------+-----------+
+| root   | 127.0.0.1 |
+| root   | ::1       |
+| b845am | localhost |
+| pma    | localhost |
+| root   | localhost |
++--------+-----------+
+5 rows in set (0.019 sec)
+
+MariaDB [(none)]> select user, host, password from mysql.user;
++--------+-----------+-------------------------------------------+
+| User   | Host      | Password                                  |
++--------+-----------+-------------------------------------------+
+| root   | localhost |                                           |
+| b845am | localhost | *2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19 |
+| root   | 127.0.0.1 |                                           |
+| root   | ::1       |                                           |
+| pma    | localhost |                                           |
++--------+-----------+-------------------------------------------+
+5 rows in set (0.002 sec)
+
+MariaDB [(none)]> grant SELECT,INSERT on batch9am.student to 'b845am'@'localhost';
+Query OK, 0 rows affected (0.027 sec)
+
+MariaDB [(none)]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u b845am -p
+Enter password: ********
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 16
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| batch9am           |
+| information_schema |
+| test               |
++--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [(none)]> use batch9am;
+Database changed
+MariaDB [batch9am]> show tables;
++--------------------+
+| Tables_in_batch9am |
++--------------------+
+| student            |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.011 sec)
+
+MariaDB [batch9am]> delete from student where sid=4;
+ERROR 1142 (42000): DELETE command denied to user 'b845am'@'localhost' for table 'student'
+MariaDB [batch9am]> insert into student values(10, 'priya', 'aws', 21);
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [batch9am]> select * from student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
+|  10 | priya     | aws            |   21 |
++-----+-----------+----------------+------+
+10 rows in set (0.001 sec)
+
+MariaDB [batch9am]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 17
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> select * from batch9am.student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
+|  10 | priya     | aws            |   21 |
++-----+-----------+----------------+------+
+10 rows in set (0.000 sec)
+
+MariaDB [(none)]> revoke SELECT,INSERT on batch9am.student from 'b845am'@'localhost';
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [(none)]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u b845am -p
+Enter password: ********
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 18
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [(none)]> grant all priveleges on batch9am.* to 'b845am'@'localhost';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'priveleges on batch9am.* to 'b845am'@'localhost'' at line 1
+MariaDB [(none)]> grant all privileges on batch9am.* to 'b845am'@'localhost';
+ERROR 1044 (42000): Access denied for user 'b845am'@'localhost' to database 'batch9am'
+MariaDB [(none)]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 19
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> grant all privileges on batch9am.* to 'b845am'@'localhost';
+Query OK, 0 rows affected (0.009 sec)
+
+MariaDB [(none)]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u b845am -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'b845am'@'localhost' (using password: NO)
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u b845am -p
+Enter password: ********
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 21
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| batch9am           |
+| information_schema |
+| test               |
++--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [(none)]> use batch9am;
+Database changed
+MariaDB [batch9am]> show tables;
++--------------------+
+| Tables_in_batch9am |
++--------------------+
+| address            |
+| fees               |
+| person             |
+| student            |
++--------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
+| 107 |    4 |  8000 |        0 |  3000 |
++-----+------+-------+----------+-------+
+7 rows in set (0.028 sec)
+
+MariaDB [batch9am]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 22
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| batch9am           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| project            |
+| test               |
++--------------------+
+7 rows in set (0.024 sec)
+
+MariaDB [(none)]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p < C:\My_Desktop\DATASETS\World\world-schema.sql
+Enter password:
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 24
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| batch9am           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| project            |
+| test               |
+| world              |
++--------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [(none)]> use world;
+Database changed
+MariaDB [world]> show tables;
++-----------------+
+| Tables_in_world |
++-----------------+
+| city            |
+| country         |
+| countrylanguage |
++-----------------+
+3 rows in set (0.001 sec)
+
+MariaDB [world]> select count(*) from city;
++----------+
+| count(*) |
++----------+
+|     4079 |
++----------+
+1 row in set (0.006 sec)
+
+MariaDB [world]> select count(*) from country;
++----------+
+| count(*) |
++----------+
+|      239 |
++----------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> select count(*) from countrylanguage;
++----------+
+| count(*) |
++----------+
+|      984 |
++----------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> select * from city limit 2;
++----+----------+-------------+----------+------------+
+| ID | Name     | CountryCode | District | Population |
++----+----------+-------------+----------+------------+
+|  1 | Kabul    | AFG         | Kabol    |    1780000 |
+|  2 | Qandahar | AFG         | Qandahar |     237500 |
++----+----------+-------------+----------+------------+
+2 rows in set (0.000 sec)
+
+MariaDB [world]> select * from country limit 2;
++------+-------------+---------------+---------------------------+-------------+-----------+------------+----------------+---------+--------+-----------------------+----------------------------------------------+---------------+---------+-------+
+| Code | Name        | Continent     | Region                    | SurfaceArea | IndepYear | Population | LifeExpectancy | GNP     | GNPOld | LocalName             | GovernmentForm                               | HeadOfState   | Capital | Code2 |
++------+-------------+---------------+---------------------------+-------------+-----------+------------+----------------+---------+--------+-----------------------+----------------------------------------------+---------------+---------+-------+
+| ABW  | Aruba       | North America | Caribbean                 |      193.00 |      NULL |     103000 |           78.4 |  828.00 | 793.00 | Aruba                 | Nonmetropolitan Territory of The Netherlands | Beatrix       |     129 | AW    |
+| AFG  | Afghanistan | Asia          | Southern and Central Asia |   652090.00 |      1919 |   22720000 |           45.9 | 5976.00 |   NULL | Afganistan/Afqanestan | Islamic Emirate                              | Mohammad Omar |       1 | AF    |
++------+-------------+---------------+---------------------------+-------------+-----------+------------+----------------+---------+--------+-----------------------+----------------------------------------------+---------------+---------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [world]> select * from countrylanguage limit 2;
++-------------+----------+------------+------------+
+| CountryCode | Language | IsOfficial | Percentage |
++-------------+----------+------------+------------+
+| ABW         | Dutch    | T          |        5.3 |
+| ABW         | English  | F          |        9.5 |
++-------------+----------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [world]> Select surfacearea/sum(surfacearea) from country;
++------------------------------+
+| surfacearea/sum(surfacearea) |
++------------------------------+
+|                     0.000001 |
++------------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> select 193/sum(surfacearea) from country;
++----------------------+
+| 193/sum(surfacearea) |
++----------------------+
+|             0.000001 |
++----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> select surfacearea/sum(surfacearea) from country group by code limit 2;
++------------------------------+
+| surfacearea/sum(surfacearea) |
++------------------------------+
+|                     1.000000 |
+|                     1.000000 |
++------------------------------+
+2 rows in set (0.011 sec)
+
+MariaDB [world]> select surfacearea/sum(surfacearea) from country group by code limit 5;
++------------------------------+
+| surfacearea/sum(surfacearea) |
++------------------------------+
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
++------------------------------+
+5 rows in set (0.000 sec)
+
+MariaDB [world]> select surfacearea/sum(surfacearea) from country group by code limit 10;
++------------------------------+
+| surfacearea/sum(surfacearea) |
++------------------------------+
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
+|                     1.000000 |
++------------------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [world]> select surfacearea from country group by code / select sum(surfacearea) from country limit 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select sum(surfacearea) from country limit 2' at line 1
+MariaDB [world]> select surfacearea from country group by code / (select sum(surfacearea) from country) limit 2;
++-------------+
+| surfacearea |
++-------------+
+|      193.00 |
++-------------+
+1 row in set, 239 warnings (0.017 sec)
+
+MariaDB [world]> (select surfacearea from country group by code) / (select sum(surfacearea) from country) limit 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '/ (select sum(surfacearea) from country) limit 2' at line 1
+MariaDB [world]> select surfacearea from country group by code / (select sum(surfacearea) from country) limit 3;
++-------------+
+| surfacearea |
++-------------+
+|      193.00 |
++-------------+
+1 row in set, 239 warnings (0.001 sec)
+
+MariaDB [world]> select surfacearea from country limit 2;
++-------------+
+| surfacearea |
++-------------+
+|      193.00 |
+|   652090.00 |
++-------------+
+2 rows in set (0.000 sec)
+
+MariaDB [world]> with data
+    -> as
+    -> select sum(surfacearea) as s from country
+    -> select country.surfacearea/data.s from country, data limit 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select sum(surfacearea) as s from country
+select country.surfacearea/data.s f...' at line 3
+MariaDB [world]> with data
+    -> as
+    -> (select sum(surfacearea) as s from country)
+    -> select country.surfacearea/data.s from country, data limit 2;
++----------------------------+
+| country.surfacearea/data.s |
++----------------------------+
+|                   0.000001 |
+|                   0.004378 |
++----------------------------+
+2 rows in set (0.014 sec)
+
+MariaDB [world]> select count(name )from country where code = code2;
++--------------+
+| count(name ) |
++--------------+
+|            0 |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> select count(name )from country where country.code = country.code2;
++--------------+
+| count(name ) |
++--------------+
+|            0 |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> Select country.name from country where country language.isofficial='T' from country, countrylanguage where country.CountryCode=Countrylanguage.CountryCode;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'language.isofficial='T' from country, countrylanguage where country.CountryCo...' at line 1
+MariaDB [world]> Select country.name from country where countrylanguage.isofficial='T' from country, countrylanguage where country.CountryCode=Countrylanguage.CountryCode;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from country, countrylanguage where country.CountryCode=Countrylanguage.Count...' at line 1
+MariaDB [world]> select name from country inner join countrycode on country.code = countrylanguage.countrycode where language ='english' and isofficial = 't';
+ERROR 1146 (42S02): Table 'world.countrycode' doesn't exist
+MariaDB [world]> select name from country inner join countrylanguage on country.code = countrylanguage.countrycode where language ='english' and isofficial = 't';
++--------------------------------------+
+| name                                 |
++--------------------------------------+
+| Anguilla                             |
+| American Samoa                       |
+| Antigua and Barbuda                  |
+| Australia                            |
+| Belize                               |
+| Bermuda                              |
+| Barbados                             |
+| Canada                               |
+| Cocos (Keeling) Islands              |
+| Christmas Island                     |
+| Cayman Islands                       |
+| Falkland Islands                     |
+| United Kingdom                       |
+| Gibraltar                            |
+| Guam                                 |
+| Hong Kong                            |
+| Ireland                              |
+| Saint Kitts and Nevis                |
+| Saint Lucia                          |
+| Lesotho                              |
+| Marshall Islands                     |
+| Malta                                |
+| Northern Mariana Islands             |
+| Montserrat                           |
+| Norfolk Island                       |
+| Niue                                 |
+| Nauru                                |
+| New Zealand                          |
+| Palau                                |
+| Saint Helena                         |
+| Seychelles                           |
+| Turks and Caicos Islands             |
+| Tokelau                              |
+| Tonga                                |
+| Tuvalu                               |
+| United States Minor Outlying Islands |
+| United States                        |
+| Saint Vincent and the Grenadines     |
+| Virgin Islands, British              |
+| Virgin Islands, U.S.                 |
+| Vanuatu                              |
+| Samoa                                |
+| South Africa                         |
+| Zimbabwe                             |
++--------------------------------------+
+44 rows in set (0.003 sec)
+
+MariaDB [world]> select name from country inner join countrylanguage on country.code = countrylanguage.countrycode where language='english' and isofficial='t';
++--------------------------------------+
+| name                                 |
++--------------------------------------+
+| Anguilla                             |
+| American Samoa                       |
+| Antigua and Barbuda                  |
+| Australia                            |
+| Belize                               |
+| Bermuda                              |
+| Barbados                             |
+| Canada                               |
+| Cocos (Keeling) Islands              |
+| Christmas Island                     |
+| Cayman Islands                       |
+| Falkland Islands                     |
+| United Kingdom                       |
+| Gibraltar                            |
+| Guam                                 |
+| Hong Kong                            |
+| Ireland                              |
+| Saint Kitts and Nevis                |
+| Saint Lucia                          |
+| Lesotho                              |
+| Marshall Islands                     |
+| Malta                                |
+| Northern Mariana Islands             |
+| Montserrat                           |
+| Norfolk Island                       |
+| Niue                                 |
+| Nauru                                |
+| New Zealand                          |
+| Palau                                |
+| Saint Helena                         |
+| Seychelles                           |
+| Turks and Caicos Islands             |
+| Tokelau                              |
+| Tonga                                |
+| Tuvalu                               |
+| United States Minor Outlying Islands |
+| United States                        |
+| Saint Vincent and the Grenadines     |
+| Virgin Islands, British              |
+| Virgin Islands, U.S.                 |
+| Vanuatu                              |
+| Samoa                                |
+| South Africa                         |
+| Zimbabwe                             |
++--------------------------------------+
+44 rows in set (0.001 sec)
+
+MariaDB [world]> select name from country where countrycode in (select code from countrylangauge where language='english' and isofficial='t');
+ERROR 1146 (42S02): Table 'world.countrylangauge' doesn't exist
+MariaDB [world]> select name from country where countrycode in (select code from countrylanguage where language='english' and isofficial='t');
+ERROR 1054 (42S22): Unknown column 'countrycode' in 'IN/ALL/ANY subquery'
+MariaDB [world]> select name from country where code in (select countrycode from countrylanguage where language='english' and isofficial='t');
++--------------------------------------+
+| name                                 |
++--------------------------------------+
+| Anguilla                             |
+| American Samoa                       |
+| Antigua and Barbuda                  |
+| Australia                            |
+| Belize                               |
+| Bermuda                              |
+| Barbados                             |
+| Canada                               |
+| Cocos (Keeling) Islands              |
+| Christmas Island                     |
+| Cayman Islands                       |
+| Falkland Islands                     |
+| United Kingdom                       |
+| Gibraltar                            |
+| Guam                                 |
+| Hong Kong                            |
+| Ireland                              |
+| Saint Kitts and Nevis                |
+| Saint Lucia                          |
+| Lesotho                              |
+| Marshall Islands                     |
+| Malta                                |
+| Northern Mariana Islands             |
+| Montserrat                           |
+| Norfolk Island                       |
+| Niue                                 |
+| Nauru                                |
+| New Zealand                          |
+| Palau                                |
+| Saint Helena                         |
+| Seychelles                           |
+| Turks and Caicos Islands             |
+| Tokelau                              |
+| Tonga                                |
+| Tuvalu                               |
+| United States Minor Outlying Islands |
+| United States                        |
+| Saint Vincent and the Grenadines     |
+| Virgin Islands, British              |
+| Virgin Islands, U.S.                 |
+| Vanuatu                              |
+| Samoa                                |
+| South Africa                         |
+| Zimbabwe                             |
++--------------------------------------+
+44 rows in set (0.002 sec)
+
+MariaDB [world]> select name from country as c, countrylanguage as l where c.code = l.countrycode and l.language='english' and isofficial='t';
++--------------------------------------+
+| name                                 |
++--------------------------------------+
+| Anguilla                             |
+| American Samoa                       |
+| Antigua and Barbuda                  |
+| Australia                            |
+| Belize                               |
+| Bermuda                              |
+| Barbados                             |
+| Canada                               |
+| Cocos (Keeling) Islands              |
+| Christmas Island                     |
+| Cayman Islands                       |
+| Falkland Islands                     |
+| United Kingdom                       |
+| Gibraltar                            |
+| Guam                                 |
+| Hong Kong                            |
+| Ireland                              |
+| Saint Kitts and Nevis                |
+| Saint Lucia                          |
+| Lesotho                              |
+| Marshall Islands                     |
+| Malta                                |
+| Northern Mariana Islands             |
+| Montserrat                           |
+| Norfolk Island                       |
+| Niue                                 |
+| Nauru                                |
+| New Zealand                          |
+| Palau                                |
+| Saint Helena                         |
+| Seychelles                           |
+| Turks and Caicos Islands             |
+| Tokelau                              |
+| Tonga                                |
+| Tuvalu                               |
+| United States Minor Outlying Islands |
+| United States                        |
+| Saint Vincent and the Grenadines     |
+| Virgin Islands, British              |
+| Virgin Islands, U.S.                 |
+| Vanuatu                              |
+| Samoa                                |
+| South Africa                         |
+| Zimbabwe                             |
++--------------------------------------+
+44 rows in set (0.002 sec)
+
+MariaDB [world]>

@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title> SIGN UP FORM</title>
+        <style>
+            body{
+                background-image: url(image/form.jpg);
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            h1{
+                text-align: center;
+                padding: 20px;
+                font-size: 50px;
+            }
+            h2{
+                text-align: center;
+                
+                
+            }
+            form{
+                top: 15%;
+                left: 35%;
+                position: absolute;
+                color: white;
+                background-color: rgb(5, 121, 255);
+                border-radius: 15px;
+                padding: 0px 30px 30px 30px;
+                width: 400px;
+                font-style: italic;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 15px;
+            }
+            input,select{
+                padding: 5px 62px 5px 5px;
+                margin: 2px 0;
+                <!-- box-sizing: border-box; -->
+                border-radius: 5px;
+
+            }
+            l1{
+                font-style:normal;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 15px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1> Signup Form</h1>
+        <div class='form'>
+            
+            <form method="POST" action="index.html">
+                <h2> Signup here</h2>
+                <br><label> First Name: </label><br>
+                <input type="text" name="fname" placeholder="Enter Your first Name" class='inp'> <br>
+                <br><label> Last Name: </label><br>
+                <input type="text" name="lname" placeholder="Enter Your last Name" class='inp'> <br>
+                <br><label> Mobile Number: </label><br>
+                <select name='ccode'>
+                    <option name='+91'>+91</option>
+                    <option name='+98'>+98</option>
+                    <option name='+99'>+99</option>
+                </select>
+                <input type="text" name="pno" placeholder="Enter Your Number" class='inp'> <br>
+            
+                <br><label> Email: </label><br>
+                <input type="email" name="name" placeholder="Enter Your Email" class='inp'> <br>
+            
+                <br><label> Password:</label><br>
+                <input type="password" name="name" placeholder="Enter Your Password" class='inp'> <br>
+                
+                <br><label> ConfirmPassword:</label><br>
+                <input type="password" name="name" placeholder="Confirm Password" class='inp'> <br><br>
+                <input type="radio"> <label class="l1"> Male &nbsp;&nbsp;</label>
+                <input type="radio"> <label class="l1"> Female </label><br>
+
+                <br><input type="submit" class='inp'>
+            
+            </form>
+        </div>
+    </body>
+</html>

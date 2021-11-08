@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title> Image Gallery Design</title>
+        <style>
+            .grid{
+                display: grid;
+                grid-gap: 20px;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) ;
+                padding: 90px;
+                padding-top: 0px;
+                margin: 30px;
+            }
+            .grid img{
+                max-width: 100%;
+                align-self:flex-end;
+                filter: grayscale(100%);
+            }
+            .grid img:hover{
+                max-width: 100%;
+                align-self:flex-end;
+                filter: grayscale(0%);
+            }
+            h1{
+                text-align: center;
+                padding-top: 20px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+     
+<table class="tableizer-table">
+<thead><tr class="tableizer-firstrow">
+        <th>Roll</th><th>Names</th><th>Marks</th><th>Grade</th></tr></thead><tbody>
+        <tr><td>1</td><td>Swaraj</td><td>93</td><td>A1</td></tr>
+        <tr><td>2</td><td>Sarthak</td><td>78</td><td>B1</td></tr>
+        <tr><td>3</td><td>Ankit</td><td>70</td><td>B2</td></tr>
+        <tr><td>4</td><td>Mohit</td><td>80</td><td>B1</td></tr>
+</tbody></table>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,664 @@
+
+Setting environment for using XAMPP for Windows.
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use batch9am;
+Database changed
+MariaDB [batch9am]> select * from student limit 1;
++-----+--------+--------+------+
+| sid | name   | course | age  |
++-----+--------+--------+------+
+|   1 | Surbhi | Python |   20 |
++-----+--------+--------+------+
+1 row in set (0.044 sec)
+
+MariaDB [batch9am]> select * from student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select distinct(course) from student;
++----------------+
+| course         |
++----------------+
+| Python         |
+| DS             |
+| Advance Python |
+| AWS            |
+| NULL           |
+| linux          |
++----------------+
+6 rows in set (0.003 sec)
+
+MariaDB [batch9am]> select name,distinct(course) from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'distinct(course) from student' at line 1
+MariaDB [batch9am]> select distinct(age) from student;
++------+
+| age  |
++------+
+|   20 |
+|   22 |
+|   23 |
+|   24 |
+|   19 |
++------+
+5 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select max(distinct(age)) from student;
++--------------------+
+| max(distinct(age)) |
++--------------------+
+|                 24 |
++--------------------+
+1 row in set (0.004 sec)
+
+MariaDB [batch9am]> select max(age) from student;
++----------+
+| max(age) |
++----------+
+|       24 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student limit 1;
++-----+--------+--------+------+
+| sid | name   | course | age  |
++-----+--------+--------+------+
+|   1 | Surbhi | Python |   20 |
++-----+--------+--------+------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select * from address limit 1;
++-----+------+---------------+--------+-------+
+| aid | sid  | street        | city   | state |
++-----+------+---------------+--------+-------+
+| 101 |    1 | malviya nagar | jaipur | raj   |
++-----+------+---------------+--------+-------+
+1 row in set (0.009 sec)
+
+MariaDB [batch9am]> select * from fees limit 1;
++-----+------+-------+----------+------+
+| fid | sid  | fees  | discount | paid |
++-----+------+-------+----------+------+
+| 101 |    1 | 10000 |     1000 | 4000 |
++-----+------+-------+----------+------+
+1 row in set (0.008 sec)
+
+MariaDB [batch9am]> select sum(fees) from fees where sid in (select sid from address where state="raj");
++-----------+
+| sum(fees) |
++-----------+
+|     22000 |
++-----------+
+1 row in set (0.008 sec)
+
+MariaDB [batch9am]> select sum(fees) from fees where sid in (select address from address where state="raj");
+ERROR 1054 (42S22): Unknown column 'address' in 'field list'
+MariaDB [batch9am]> select sum(fees) from fees where sid in (select street from address where state="raj");
++-----------+
+| sum(fees) |
++-----------+
+|      NULL |
++-----------+
+1 row in set, 18 warnings (0.001 sec)
+
+MariaDB [batch9am]> select sum(fees) from fees where sid in (select * from address where state="raj");
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [batch9am]> select sum(fees) from fees where (select * from address where state="raj");
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [batch9am]> select sum(fees) from fees where (select sid from address where state="raj");
+ERROR 1242 (21000): Subquery returns more than 1 row
+MariaDB [batch9am]> select city from address where sid(select sid from students where age=max(age));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select sid from students where age=max(age))' at line 1
+MariaDB [batch9am]> select city from address where sid in (select sid from students where age=max(age));
+ERROR 1146 (42S02): Table 'batch9am.students' doesn't exist
+MariaDB [batch9am]> select city from address where sid in (select sid from student where age=max(age));
+ERROR 1111 (HY000): Invalid use of group function
+MariaDB [batch9am]> select city from address where sid in (select sid from student where age in ( select max(age));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [batch9am]> select city from address where sid in (select sid from student where age in ( select max(age)
+    -> from student));
+Empty set (0.005 sec)
+
+MariaDB [batch9am]> select * from student where age = (select max(age) from student));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+MariaDB [batch9am]> select * from student where age = (select max(age) from student);
++-----+--------+--------+------+
+| sid | name   | course | age  |
++-----+--------+--------+------+
+|   5 | Ashish | AWS    |   24 |
++-----+--------+--------+------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select * from address;
++-----+------+----------------+--------+-------+
+| aid | sid  | street         | city   | state |
++-----+------+----------------+--------+-------+
+| 101 |    1 | malviya nagar  | jaipur | raj   |
+| 102 |    2 | raja park      | jaipur | raj   |
+| 103 |    4 | tilak nagar    | delhi  | delhi |
+| 104 |    6 | patel nagar    | indore | mp    |
+| 105 |    7 | karol bagh     | delhi  | delhi |
+| 106 |    9 | vaishali nagar | jaipur | raj   |
++-----+------+----------------+--------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student order by age;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   8 | Priya     | linux          |   19 |
+|   1 | Surbhi    | Python         |   20 |
+|   7 | Muskan    | AWS            |   20 |
+|   9 | Prabhakar | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   4 | Aman      | Advance Python |   22 |
+|   6 | Naman     | NULL           |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   5 | Ashish    | AWS            |   24 |
++-----+-----------+----------------+------+
+9 rows in set (0.002 sec)
+
+MariaDB [batch9am]> select * from student order by age desc;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   5 | Ashish    | AWS            |   24 |
+|   3 | Krupali   | DS             |   23 |
+|   2 | Yash      | DS             |   22 |
+|   4 | Aman      | Advance Python |   22 |
+|   6 | Naman     | NULL           |   22 |
+|   1 | Surbhi    | Python         |   20 |
+|   7 | Muskan    | AWS            |   20 |
+|   9 | Prabhakar | Python         |   20 |
+|   8 | Priya     | linux          |   19 |
++-----+-----------+----------------+------+
+9 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student order by name;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   3 | Krupali   | DS             |   23 |
+|   7 | Muskan    | AWS            |   20 |
+|   6 | Naman     | NULL           |   22 |
+|   9 | Prabhakar | Python         |   20 |
+|   8 | Priya     | linux          |   19 |
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
++-----+-----------+----------------+------+
+9 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from fees order by paid;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
++-----+------+-------+----------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
++-----+------+-------+----------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [batch9am]> insert into fees values(107, 4, 8000, 0, 3000);
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [batch9am]> select * from fees'
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''
+'' at line 1
+MariaDB [batch9am]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
+| 107 |    4 |  8000 |        0 |  3000 |
++-----+------+-------+----------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from fees order by fees, paid;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 107 |    4 |  8000 |        0 |  3000 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 106 |    8 | 15000 |     5000 | 10000 |
++-----+------+-------+----------+-------+
+7 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from fees order by fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 104 |    5 |  8000 |        0 |  4000 |
+| 107 |    4 |  8000 |        0 |  3000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 106 |    8 | 15000 |     5000 | 10000 |
++-----+------+-------+----------+-------+
+7 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from fees order by fees as f;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'as f' at line 1
+MariaDB [batch9am]> create view temp as select * from fees order by fees;
+Query OK, 0 rows affected (0.045 sec)
+
+MariaDB [batch9am]> show tables;
++--------------------+
+| Tables_in_batch9am |
++--------------------+
+| address            |
+| fees               |
+| person             |
+| student            |
+| temp               |
++--------------------+
+5 rows in set (0.004 sec)
+
+MariaDB [batch9am]> desc view'
+    '> ';
+ERROR 1146 (42S02): Table 'batch9am.view' doesn't exist
+MariaDB [batch9am]> desc temp;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| fid      | int(11) | NO   |     | NULL    |       |
+| sid      | int(5)  | YES  |     | NULL    |       |
+| fees     | double  | YES  |     | NULL    |       |
+| discount | double  | YES  |     | NULL    |       |
+| paid     | double  | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+5 rows in set (0.059 sec)
+
+MariaDB [batch9am]> select * from temp;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 104 |    5 |  8000 |        0 |  4000 |
+| 107 |    4 |  8000 |        0 |  3000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 106 |    8 | 15000 |     5000 | 10000 |
++-----+------+-------+----------+-------+
+7 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from temp order by paid;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 107 |    4 |  8000 |        0 |  3000 |
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
++-----+------+-------+----------+-------+
+7 rows in set (0.001 sec)
+
+MariaDB [batch9am]> drop view temp;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [batch9am]> show tables;
++--------------------+
+| Tables_in_batch9am |
++--------------------+
+| address            |
+| fees               |
+| person             |
+| student            |
++--------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student group by course;
++-----+--------+----------------+------+
+| sid | name   | course         | age  |
++-----+--------+----------------+------+
+|   6 | Naman  | NULL           |   22 |
+|   4 | Aman   | Advance Python |   22 |
+|   5 | Ashish | AWS            |   24 |
+|   2 | Yash   | DS             |   22 |
+|   8 | Priya  | linux          |   19 |
+|   1 | Surbhi | Python         |   20 |
++-----+--------+----------------+------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select course from student group by course;
++----------------+
+| course         |
++----------------+
+| NULL           |
+| Advance Python |
+| AWS            |
+| DS             |
+| linux          |
+| Python         |
++----------------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select city from address group by city;
++--------+
+| city   |
++--------+
+| delhi  |
+| indore |
+| jaipur |
++--------+
+3 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select city, count(*) from address group by city;
++--------+----------+
+| city   | count(*) |
++--------+----------+
+| delhi  |        2 |
+| indore |        1 |
+| jaipur |        3 |
++--------+----------+
+3 rows in set (0.001 sec)
+
+MariaDB [batch9am]> courses name in which only single student is registered;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'courses name in which only single student is registered' at line 1
+MariaDB [batch9am]> select course from student group by course where count(*)=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where count(*)=1' at line 1
+MariaDB [batch9am]> select course from student group by course having count(*)=1;
++----------------+
+| course         |
++----------------+
+| NULL           |
+| Advance Python |
+| linux          |
++----------------+
+3 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select max(fees) from fees group by fees;
++-----------+
+| max(fees) |
++-----------+
+|      8000 |
+|      9000 |
+|     10000 |
+|     12000 |
+|     12500 |
+|     15000 |
++-----------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select course, count(*) from student group by course order by course;
++----------------+----------+
+| course         | count(*) |
++----------------+----------+
+| NULL           |        1 |
+| Advance Python |        1 |
+| AWS            |        2 |
+| DS             |        2 |
+| linux          |        1 |
+| Python         |        2 |
++----------------+----------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select course, count(*) from student group by course order by count(*);
++----------------+----------+
+| course         | count(*) |
++----------------+----------+
+| linux          |        1 |
+| Advance Python |        1 |
+| NULL           |        1 |
+| DS             |        2 |
+| AWS            |        2 |
+| Python         |        2 |
++----------------+----------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select course, count(*) from student group by course order by count(*) desc;
++----------------+----------+
+| course         | count(*) |
++----------------+----------+
+| DS             |        2 |
+| AWS            |        2 |
+| Python         |        2 |
+| linux          |        1 |
+| Advance Python |        1 |
+| NULL           |        1 |
++----------------+----------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> % --> 0 or more characters, . --> single character
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '% --> 0 or more characters, . --> single character' at line 1
+MariaDB [batch9am]> select * from student where name like 'a%';
++-----+--------+----------------+------+
+| sid | name   | course         | age  |
++-----+--------+----------------+------+
+|   4 | Aman   | Advance Python |   22 |
+|   5 | Ashish | AWS            |   24 |
++-----+--------+----------------+------+
+2 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student where name like '%a';
++-----+-------+--------+------+
+| sid | name  | course | age  |
++-----+-------+--------+------+
+|   8 | Priya | linux  |   19 |
++-----+-------+--------+------+
+1 row in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student where name like 'a';
+Empty set (0.000 sec)
+
+MariaDB [batch9am]> select * from student where name like 'a.';
+Empty set (0.001 sec)
+
+MariaDB [batch9am]> select * from student where name like '....';
+Empty set (0.000 sec)
+
+MariaDB [batch9am]> select * from student where name like '....';
+Empty set (0.000 sec)
+
+MariaDB [batch9am]> select * from student where name like 'a...';
+Empty set (0.000 sec)
+
+MariaDB [batch9am]> select * from student where name like '____';
++-----+------+----------------+------+
+| sid | name | course         | age  |
++-----+------+----------------+------+
+|   2 | Yash | DS             |   22 |
+|   4 | Aman | Advance Python |   22 |
++-----+------+----------------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student where name like '_____';
++-----+-------+--------+------+
+| sid | name  | course | age  |
++-----+-------+--------+------+
+|   6 | Naman | NULL   |   22 |
+|   8 | Priya | linux  |   19 |
++-----+-------+--------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student where name like '_____';
++-----+-------+--------+------+
+| sid | name  | course | age  |
++-----+-------+--------+------+
+|   6 | Naman | NULL   |   22 |
+|   8 | Priya | linux  |   19 |
++-----+-------+--------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student where name like '______';
++-----+--------+--------+------+
+| sid | name   | course | age  |
++-----+--------+--------+------+
+|   1 | Surbhi | Python |   20 |
+|   5 | Ashish | AWS    |   24 |
+|   7 | Muskan | AWS    |   20 |
++-----+--------+--------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student where name like 'a%' or 's%';
++-----+--------+----------------+------+
+| sid | name   | course         | age  |
++-----+--------+----------------+------+
+|   4 | Aman   | Advance Python |   22 |
+|   5 | Ashish | AWS            |   24 |
++-----+--------+----------------+------+
+2 rows in set, 5 warnings (0.001 sec)
+
+MariaDB [batch9am]> select * from student where name like 'a%' or name like 's%';
++-----+--------+----------------+------+
+| sid | name   | course         | age  |
++-----+--------+----------------+------+
+|   1 | Surbhi | Python         |   20 |
+|   4 | Aman   | Advance Python |   22 |
+|   5 | Ashish | AWS            |   24 |
++-----+--------+----------------+------+
+3 rows in set (0.000 sec)
+
+MariaDB [batch9am]> select * from student s;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student s where s.sid in (1, 2, 3);
++-----+---------+--------+------+
+| sid | name    | course | age  |
++-----+---------+--------+------+
+|   1 | Surbhi  | Python |   20 |
+|   2 | Yash    | DS     |   22 |
+|   3 | Krupali | DS     |   23 |
++-----+---------+--------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [batch9am]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> select * from student;
+ERROR 1046 (3D000): No database selected
+MariaDB [(none)]> select * from batch9am.student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.001 sec)
+
+MariaDB [(none)]> select * from batch9am.student as s where s.sid = 1;
++-----+--------+--------+------+
+| sid | name   | course | age  |
++-----+--------+--------+------+
+|   1 | Surbhi | Python |   20 |
++-----+--------+--------+------+
+1 row in set (0.001 sec)
+
+MariaDB [(none)]>

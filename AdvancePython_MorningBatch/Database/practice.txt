@@ -1,0 +1,1000 @@
+
+Setting environment for using XAMPP for Windows.
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use batch9am;
+Database changed
+MariaDB [batch9am]> exit;
+Bye
+
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use world;
+Database changed
+MariaDB [world]> select * from city limit 1;
++----+-------+-------------+----------+------------+
+| ID | Name  | CountryCode | District | Population |
++----+-------+-------------+----------+------------+
+|  1 | Kabul | AFG         | Kabol    |    1780000 |
++----+-------+-------------+----------+------------+
+1 row in set (0.122 sec)
+
+MariaDB [world]> select * from country limit 1;
++------+-------+---------------+-----------+-------------+-----------+------------+----------------+--------+--------+-----------+----------------------------------------------+-------------+---------+-------+
+| Code | Name  | Continent     | Region    | SurfaceArea | IndepYear | Population | LifeExpectancy | GNP    | GNPOld | LocalName | GovernmentForm                               | HeadOfState | Capital | Code2 |
++------+-------+---------------+-----------+-------------+-----------+------------+----------------+--------+--------+-----------+----------------------------------------------+-------------+---------+-------+
+| ABW  | Aruba | North America | Caribbean |      193.00 |      NULL |     103000 |           78.4 | 828.00 | 793.00 | Aruba     | Nonmetropolitan Territory of The Netherlands | Beatrix     |     129 | AW    |
++------+-------+---------------+-----------+-------------+-----------+------------+----------------+--------+--------+-----------+----------------------------------------------+-------------+---------+-------+
+1 row in set (0.022 sec)
+
+MariaDB [world]> select * from countrylanguage limit 1;
++-------------+----------+------------+------------+
+| CountryCode | Language | IsOfficial | Percentage |
++-------------+----------+------------+------------+
+| ABW         | Dutch    | T          |        5.3 |
++-------------+----------+------------+------------+
+1 row in set (0.013 sec)
+
+MariaDB [world]> select name, population/surfacearea from country limit 1;
++-------+------------------------+
+| name  | population/surfacearea |
++-------+------------------------+
+| Aruba |             533.678756 |
++-------+------------------------+
+1 row in set (0.012 sec)
+
+MariaDB [world]> select name, population/surfacearea from country limit 2;
++-------------+------------------------+
+| name        | population/surfacearea |
++-------------+------------------------+
+| Aruba       |             533.678756 |
+| Afghanistan |              34.841816 |
++-------------+------------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [world]> select name, population/surfacearea from country order by population/surfacearea limit 2;
++-----------------------------+------------------------+
+| name                        | population/surfacearea |
++-----------------------------+------------------------+
+| Antarctica                  |               0.000000 |
+| French Southern territories |               0.000000 |
++-----------------------------+------------------------+
+2 rows in set (0.015 sec)
+
+MariaDB [world]> select name, population/surfacearea from country order by population/surfacearea desc limit 2;
++--------+------------------------+
+| name   | population/surfacearea |
++--------+------------------------+
+| Macao  |           26277.777778 |
+| Monaco |           22666.666667 |
++--------+------------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [world]> select name, population/surfacearea from country order by population/surfacearea desc limit 1;
++-------+------------------------+
+| name  | population/surfacearea |
++-------+------------------------+
+| Macao |           26277.777778 |
++-------+------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> with table as
+    -> (select population/surfacearea as density from country)
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table as
+(select population/surfacearea as density from country)' at line 1
+MariaDB [world]> with table as
+    -> (select population/surfacearea as density, code from country)
+    -> select name, density from country inner join table on table.code = country.code where density = max(density);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table as
+(select population/surfacearea as density, code from country)
+select...' at line 1
+MariaDB [world]> with
+    -> table as (select population/surfacearea as density, code from country)
+    -> select name, density from country inner join table on table.code = country.code where density = max(density);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table as (select population/surfacearea as density, code from country)
+select...' at line 2
+MariaDB [world]> with data as
+    -> (select population/surfacearea as density, code from country)
+    -> select name, density from country inner join table on table.code = country.code where density = max(density);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table on table.code = country.code where density = max(density)' at line 3
+MariaDB [world]> with data as
+    -> (select population/surfacearea as density, code from country)
+    -> select name, density from country inner join data on data.code = country.code where density = max(density);
+ERROR 1111 (HY000): Invalid use of group function
+MariaDB [world]> with data as
+    -> (select population/surfacearea as density, code from country)
+    -> select name, density from country inner join data on data.code = country.code where density = (select max(density from data);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from data)' at line 3
+MariaDB [world]>  with data as
+    ->     -> (select population/surfacearea as density, code from country)
+    ->     -> (select population/surfacearea as density, code from country
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-> (select population/surfacearea as density, code from country)
+    -> (sele...' at line 2
+MariaDB [world]> with data as
+    -> (select population/surfacearea as density, code from country)
+    -> select name, density from country inner join data on data.code = country.code where density = (select max(density) from data);
++-------+--------------+
+| name  | density      |
++-------+--------------+
+| Macao | 26277.777778 |
++-------+--------------+
+1 row in set (0.020 sec)
+
+MariaDB [world]> select name, population from city where population = (select max(population) from city);
++-----------------+------------+
+| name            | population |
++-----------------+------------+
+| Mumbai (Bombay) |   10500000 |
++-----------------+------------+
+1 row in set (0.013 sec)
+
+MariaDB [world]> select language, percentage from countrylanguage where countrycode="USA" order by percentaga desc limit 2;
+ERROR 1054 (42S22): Unknown column 'percentaga' in 'order clause'
+MariaDB [world]> select language, percentage from countrylanguage where countrycode="USA" order by percentage desc limit 2;
++----------+------------+
+| language | percentage |
++----------+------------+
+| English  |       86.2 |
+| Spanish  |        7.5 |
++----------+------------+
+2 rows in set (0.003 sec)
+
+MariaDB [world]> select * from city where countrycode="USA" limit 2;
++------+-------------+-------------+------------+------------+
+| ID   | Name        | CountryCode | District   | Population |
++------+-------------+-------------+------------+------------+
+| 3793 | New York    | USA         | New York   |    8008278 |
+| 3794 | Los Angeles | USA         | California |    3694820 |
++------+-------------+-------------+------------+------------+
+2 rows in set (0.002 sec)
+
+MariaDB [world]> select * from city where countrycode="USA" and population>3000000 limit 2;
++------+-------------+-------------+------------+------------+
+| ID   | Name        | CountryCode | District   | Population |
++------+-------------+-------------+------------+------------+
+| 3793 | New York    | USA         | New York   |    8008278 |
+| 3794 | Los Angeles | USA         | California |    3694820 |
++------+-------------+-------------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [world]> select * from city where countrycode="USA" and population>3000000 limit 5;
++------+-------------+-------------+------------+------------+
+| ID   | Name        | CountryCode | District   | Population |
++------+-------------+-------------+------------+------------+
+| 3793 | New York    | USA         | New York   |    8008278 |
+| 3794 | Los Angeles | USA         | California |    3694820 |
++------+-------------+-------------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [world]> select * from city where countrycode="USA" and population>3000000;
++------+-------------+-------------+------------+------------+
+| ID   | Name        | CountryCode | District   | Population |
++------+-------------+-------------+------------+------------+
+| 3793 | New York    | USA         | New York   |    8008278 |
+| 3794 | Los Angeles | USA         | California |    3694820 |
++------+-------------+-------------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [world]> select * from city group by countrycode having countrycode="USA" where sum(population)>3000000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where sum(population)>3000000' at line 1
+MariaDB [world]> select * from city group by countrycode having countrycode="USA" and sum(population)>3000000;
++------+----------+-------------+----------+------------+
+| ID   | Name     | CountryCode | District | Population |
++------+----------+-------------+----------+------------+
+| 3793 | New York | USA         | New York |    8008278 |
++------+----------+-------------+----------+------------+
+1 row in set (0.004 sec)
+
+MariaDB [world]> select * from city group by countrycode having countrycode="USA" and sum(population)>3000000
+    -> ;
++------+----------+-------------+----------+------------+
+| ID   | Name     | CountryCode | District | Population |
++------+----------+-------------+----------+------------+
+| 3793 | New York | USA         | New York |    8008278 |
++------+----------+-------------+----------+------------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> select * from city group by countrycode having countrycode="USA" and sum(population)>300000;
++------+----------+-------------+----------+------------+
+| ID   | Name     | CountryCode | District | Population |
++------+----------+-------------+----------+------------+
+| 3793 | New York | USA         | New York |    8008278 |
++------+----------+-------------+----------+------------+
+1 row in set (0.001 sec)
+
+MariaDB [world]> select countrycode from city group by countrycode having sum(population)>3000000;
++-------------+
+| countrycode |
++-------------+
+| ARG         |
+| AUS         |
+| BGD         |
+| BLR         |
+| BOL         |
+| BRA         |
+| CAN         |
+| CHL         |
+| CHN         |
+| CIV         |
+| CMR         |
+| COD         |
+| COL         |
+| CUB         |
+| DEU         |
+| DZA         |
+| ECU         |
+| EGY         |
+| ESP         |
+| ETH         |
+| FRA         |
+| GBR         |
+| HKG         |
+| IDN         |
+| IND         |
+| IRN         |
+| IRQ         |
+| ITA         |
+| JPN         |
+| KAZ         |
+| KEN         |
+| KOR         |
+| MAR         |
+| MEX         |
+| MMR         |
+| MOZ         |
+| MYS         |
+| NGA         |
+| NLD         |
+| PAK         |
+| PER         |
+| PHL         |
+| POL         |
+| PRK         |
+| ROM         |
+| RUS         |
+| SAU         |
+| SDN         |
+| SGP         |
+| SYR         |
+| THA         |
+| TUR         |
+| TWN         |
+| UKR         |
+| USA         |
+| UZB         |
+| VEN         |
+| VNM         |
+| ZAF         |
++-------------+
+59 rows in set (0.024 sec)
+
+MariaDB [world]> select name from country where countrycode in (select code from city group by countrycode having sum(population)>3000000);
+ERROR 1054 (42S22): Unknown column 'countrycode' in 'IN/ALL/ANY subquery'
+MariaDB [world]> select name from country where code in (select countrycode from city group by countrycode having sum(population)>3000000);
++---------------------------------------+
+| name                                  |
++---------------------------------------+
+| Argentina                             |
+| Australia                             |
+| Bangladesh                            |
+| Belarus                               |
+| Bolivia                               |
+| Brazil                                |
+| Canada                                |
+| Chile                                 |
+| China                                 |
+| C├┤te dΓÇÖIvoire                         |
+| Cameroon                              |
+| Congo, The Democratic Republic of the |
+| Colombia                              |
+| Cuba                                  |
+| Germany                               |
+| Algeria                               |
+| Ecuador                               |
+| Egypt                                 |
+| Spain                                 |
+| Ethiopia                              |
+| France                                |
+| United Kingdom                        |
+| Hong Kong                             |
+| Indonesia                             |
+| India                                 |
+| Iran                                  |
+| Iraq                                  |
+| Italy                                 |
+| Japan                                 |
+| Kazakstan                             |
+| Kenya                                 |
+| South Korea                           |
+| Morocco                               |
+| Mexico                                |
+| Myanmar                               |
+| Mozambique                            |
+| Malaysia                              |
+| Nigeria                               |
+| Netherlands                           |
+| Pakistan                              |
+| Peru                                  |
+| Philippines                           |
+| Poland                                |
+| North Korea                           |
+| Romania                               |
+| Russian Federation                    |
+| Saudi Arabia                          |
+| Sudan                                 |
+| Singapore                             |
+| Syria                                 |
+| Thailand                              |
+| Turkey                                |
+| Taiwan                                |
+| Ukraine                               |
+| United States                         |
+| Uzbekistan                            |
+| Venezuela                             |
+| Vietnam                               |
+| South Africa                          |
++---------------------------------------+
+59 rows in set (0.021 sec)
+
+MariaDB [world]> name of the countries having LE > 5.6 and overall cities population > 1 million and official language should be english;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name of the countries having LE > 5.6 and overall cities population > 1 milli...' at line 1
+MariaDB [world]> select name from country inner join city on country.code = city.countrycode innerjoin countrylanguage on countrylanguage.countrycode = country.code where lifeexpectancy>5.6 and offical="T" and language='english';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'innerjoin countrylanguage on countrylanguage.countrycode = country.code where...' at line 1
+MariaDB [world]> select name from country inner join city on country.code = city.countrycode inner join countrylanguage on countrylanguage.countrycode = country.code where lifeexpectancy>5.6 and offical="T" and language='english';
+ERROR 1052 (23000): Column 'name' in field list is ambiguous
+MariaDB [world]> select country.name from country inner join city on country.code = city.countrycode inner join countrylanguage on countrylanguage.countrycode = country.code where lifeexpectancy>5.6 and isoffical="T" and language='english';
+ERROR 1054 (42S22): Unknown column 'isoffical' in 'where clause'
+MariaDB [world]> select country.name from country inner join city on country.code = city.countrycode inner join countrylanguage on countrylanguage.countrycode = country.code where lifeexpectancy>5.6 and isofficial="T" and language='english';
++----------------------------------+
+| name                             |
++----------------------------------+
+| Anguilla                         |
+| Anguilla                         |
+| American Samoa                   |
+| American Samoa                   |
+| Antigua and Barbuda              |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Australia                        |
+| Belize                           |
+| Belize                           |
+| Bermuda                          |
+| Bermuda                          |
+| Barbados                         |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Canada                           |
+| Cayman Islands                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| United Kingdom                   |
+| Gibraltar                        |
+| Guam                             |
+| Guam                             |
+| Hong Kong                        |
+| Hong Kong                        |
+| Ireland                          |
+| Ireland                          |
+| Saint Kitts and Nevis            |
+| Saint Lucia                      |
+| Lesotho                          |
+| Marshall Islands                 |
+| Malta                            |
+| Malta                            |
+| Northern Mariana Islands         |
+| Montserrat                       |
+| Nauru                            |
+| Nauru                            |
+| New Zealand                      |
+| New Zealand                      |
+| New Zealand                      |
+| New Zealand                      |
+| New Zealand                      |
+| New Zealand                      |
+| New Zealand                      |
+| New Zealand                      |
+| New Zealand                      |
+| Palau                            |
+| Saint Helena                     |
+| Seychelles                       |
+| Turks and Caicos Islands         |
+| Tonga                            |
+| Tuvalu                           |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| United States                    |
+| Saint Vincent and the Grenadines |
+| Virgin Islands, British          |
+| Virgin Islands, U.S.             |
+| Vanuatu                          |
+| Samoa                            |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| South Africa                     |
+| Zimbabwe                         |
+| Zimbabwe                         |
+| Zimbabwe                         |
+| Zimbabwe                         |
+| Zimbabwe                         |
+| Zimbabwe                         |
++----------------------------------+
+516 rows in set (0.006 sec)
+
+MariaDB [world]> select distinct country.name from country inner join city on country.code = city.countrycode inner join countrylanguage on countrylanguage.countrycode = country.code where lifeexpectancy>5.6 and isofficial="T" and language='english';
++----------------------------------+
+| name                             |
++----------------------------------+
+| Anguilla                         |
+| American Samoa                   |
+| Antigua and Barbuda              |
+| Australia                        |
+| Belize                           |
+| Bermuda                          |
+| Barbados                         |
+| Canada                           |
+| Cayman Islands                   |
+| United Kingdom                   |
+| Gibraltar                        |
+| Guam                             |
+| Hong Kong                        |
+| Ireland                          |
+| Saint Kitts and Nevis            |
+| Saint Lucia                      |
+| Lesotho                          |
+| Marshall Islands                 |
+| Malta                            |
+| Northern Mariana Islands         |
+| Montserrat                       |
+| Nauru                            |
+| New Zealand                      |
+| Palau                            |
+| Saint Helena                     |
+| Seychelles                       |
+| Turks and Caicos Islands         |
+| Tonga                            |
+| Tuvalu                           |
+| United States                    |
+| Saint Vincent and the Grenadines |
+| Virgin Islands, British          |
+| Virgin Islands, U.S.             |
+| Vanuatu                          |
+| Samoa                            |
+| South Africa                     |
+| Zimbabwe                         |
++----------------------------------+
+37 rows in set (0.002 sec)
+
+MariaDB [world]> select district from city where countrycode="CAN";
++------------------+
+| district         |
++------------------+
+| Qu├⌐bec           |
+| Alberta          |
+| Ontario          |
+| Ontario          |
+| Manitoba         |
+| Alberta          |
+| Ontario          |
+| Ontario          |
+| British Colombia |
+| Ontario          |
+| Ontario          |
+| Ontario          |
+| Ontario          |
+| Qu├⌐bec           |
+| British Colombia |
+| Ontario          |
+| Ontario          |
+| Saskatchewan     |
+| Ontario          |
+| Ontario          |
+| Saskatchewan     |
+| British Colombia |
+| Qu├⌐bec           |
+| Ontario          |
+| British Colombia |
+| Ontario          |
+| Ontario          |
+| Ontario          |
+| Ontario          |
+| Ontario          |
+| Qu├⌐bec           |
+| Ontario          |
+| Ontario          |
+| Ontario          |
+| Nova Scotia      |
+| Ontario          |
+| Nova Scotia      |
+| Ontario          |
+| Ontario          |
+| British Colombia |
+| Ontario          |
+| Newfoundland     |
+| British Colombia |
+| British Colombia |
+| Qu├⌐bec           |
+| British Colombia |
+| Ontario          |
+| British Colombia |
+| Ontario          |
++------------------+
+49 rows in set (0.001 sec)
+
+MariaDB [world]> select sum(population) from city where countrycode="CAN";
++-----------------+
+| sum(population) |
++-----------------+
+|        12673840 |
++-----------------+
+1 row in set (0.001 sec)
+
+MariaDB [world]>

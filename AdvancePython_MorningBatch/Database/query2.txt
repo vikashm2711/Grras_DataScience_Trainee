@@ -1,0 +1,404 @@
+
+Setting environment for using XAMPP for Windows.
+Simran Grover@DESKTOP-C0J3R7A c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| batch9am           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.010 sec)
+
+MariaDB [(none)]> use batch9am;
+Database changed
+MariaDB [batch9am]> show tables;
++--------------------+
+| Tables_in_batch9am |
++--------------------+
+| person             |
++--------------------+
+1 row in set (0.002 sec)
+
+MariaDB [batch9am]> create table student(sid int(5) primary key auto_increment,name varchar(100) not null, course varchar(100), age int(6));
+Query OK, 0 rows affected (0.058 sec)
+
+MariaDB [batch9am]> desc student;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| sid    | int(5)       | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | NO   |     | NULL    |                |
+| course | varchar(100) | YES  |     | NULL    |                |
+| age    | int(6)       | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.052 sec)
+
+MariaDB [batch9am]> insert into student values(1, 'Surbhi', 'Python', 20);
+Query OK, 1 row affected (0.023 sec)
+
+MariaDB [batch9am]> insert into student(name, course, age) values('Yash', 'DS', 22), ('Krupali', 'DS', 23), ('Aman', 'Advance Python', 22), ('Ashish', 'AWS', 24), ('Naman', 'Azure', 22), ('Muskan', 'AWS', 20), ('Priya', 'linux', 19), ('Prabhakar', 'Python', 20);
+Query OK, 8 rows affected (0.016 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+MariaDB [batch9am]> select * from student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | Azure          |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.012 sec)
+
+MariaDB [batch9am]> select avg(age) from student;
++----------+
+| avg(age) |
++----------+
+|  21.3333 |
++----------+
+1 row in set (0.004 sec)
+
+MariaDB [batch9am]> select max(age) from student;
++----------+
+| max(age) |
++----------+
+|       24 |
++----------+
+1 row in set (0.011 sec)
+
+MariaDB [batch9am]> select min(age) from student;
++----------+
+| min(age) |
++----------+
+|       19 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select max(name) from student;
++-----------+
+| max(name) |
++-----------+
+| Yash      |
++-----------+
+1 row in set (0.011 sec)
+
+MariaDB [batch9am]> select sum(age) from student;
++----------+
+| sum(age) |
++----------+
+|      192 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select max(age) - min(age) from student;
++---------------------+
+| max(age) - min(age) |
++---------------------+
+|                   5 |
++---------------------+
+1 row in set (0.011 sec)
+
+MariaDB [batch9am]> select max(age) from student where course='python' or course='advance python' or course='ds';
++----------+
+| max(age) |
++----------+
+|       23 |
++----------+
+1 row in set (0.014 sec)
+
+MariaDB [batch9am]> select min(age) from student where course='python' or course='advance python' or course='ds';
++----------+
+| min(age) |
++----------+
+|       20 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select count(age) from student;
++------------+
+| count(age) |
++------------+
+|          9 |
++------------+
+1 row in set (0.001 sec)
+
+MariaDB [batch9am]> select * from student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | Azure          |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.001 sec)
+
+MariaDB [batch9am]> update student set course=Null where sid=6;
+Query OK, 1 row affected (0.009 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [batch9am]> select * from student;
++-----+-----------+----------------+------+
+| sid | name      | course         | age  |
++-----+-----------+----------------+------+
+|   1 | Surbhi    | Python         |   20 |
+|   2 | Yash      | DS             |   22 |
+|   3 | Krupali   | DS             |   23 |
+|   4 | Aman      | Advance Python |   22 |
+|   5 | Ashish    | AWS            |   24 |
+|   6 | Naman     | NULL           |   22 |
+|   7 | Muskan    | AWS            |   20 |
+|   8 | Priya     | linux          |   19 |
+|   9 | Prabhakar | Python         |   20 |
++-----+-----------+----------------+------+
+9 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select count(course) from student;
++---------------+
+| count(course) |
++---------------+
+|             8 |
++---------------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select count(*) from student;
++----------+
+| count(*) |
++----------+
+|        9 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> create table fees(fid int primary key, sid int(5), fees double, discount double, paid double, foreign key(sid) references student(sid));
+Query OK, 0 rows affected (0.019 sec)
+
+MariaDB [batch9am]> desc fees;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| fid      | int(11) | NO   | PRI | NULL    |       |
+| sid      | int(5)  | YES  | MUL | NULL    |       |
+| fees     | double  | YES  |     | NULL    |       |
+| discount | double  | YES  |     | NULL    |       |
+| paid     | double  | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+5 rows in set (0.022 sec)
+
+MariaDB [batch9am]> insert into fees values(101, 1, 10000, 1000, 4000), (102, 2, 12000, 2500, 5500), (103, 3, 12500, 1000, 4500), (104, 5, 8000, 0, 4000), (105, 6, 9000, 0, 9000), (106, 8, 15000, 5000, 10000);
+Query OK, 6 rows affected (0.003 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [batch9am]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
++-----+------+-------+----------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [batch9am]> insert into fees values(107, 1, 12000, 1000, 4000);
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [batch9am]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
+| 107 |    1 | 12000 |     1000 |  4000 |
++-----+------+-------+----------+-------+
+7 rows in set (0.001 sec)
+
+MariaDB [batch9am]> delete from fees where fid=107;
+Query OK, 1 row affected (0.015 sec)
+
+MariaDB [batch9am]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+| 101 |    1 | 10000 |     1000 |  4000 |
+| 102 |    2 | 12000 |     2500 |  5500 |
+| 103 |    3 | 12500 |     1000 |  4500 |
+| 104 |    5 |  8000 |        0 |  4000 |
+| 105 |    6 |  9000 |        0 |  9000 |
+| 106 |    8 | 15000 |     5000 | 10000 |
++-----+------+-------+----------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [batch9am]> how many people have been given discount ??
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'how many people have been given discount ??' at line 1
+MariaDB [batch9am]> select count(*) from fees where discount>0;
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.012 sec)
+
+MariaDB [batch9am]> select sum(fees) from student;
+ERROR 1054 (42S22): Unknown column 'fees' in 'field list'
+MariaDB [batch9am]> select sum(fees) from fees;
++-----------+
+| sum(fees) |
++-----------+
+|     66500 |
++-----------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select sum(fees) from discount;
+ERROR 1146 (42S02): Table 'batch9am.discount' doesn't exist
+MariaDB [batch9am]> select sum(discount) from fees;
++---------------+
+| sum(discount) |
++---------------+
+|          9500 |
++---------------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select sum(apid) from fees;
+ERROR 1054 (42S22): Unknown column 'apid' in 'field list'
+MariaDB [batch9am]> select sum(paid) from fees;
++-----------+
+| sum(paid) |
++-----------+
+|     37000 |
++-----------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> select sum(fees) - sum(paid) from fees;
++-----------------------+
+| sum(fees) - sum(paid) |
++-----------------------+
+|                 29500 |
++-----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> create table address(aid int primary key, sid int(5), street varchar(100) not null, city varchar(100) not null, state varchar(100) not null, foreign key(sid) references student(sid));
+Query OK, 0 rows affected (0.046 sec)
+
+MariaDB [batch9am]> select * from student limit 1;
++-----+--------+--------+------+
+| sid | name   | course | age  |
++-----+--------+--------+------+
+|   1 | Surbhi | Python |   20 |
++-----+--------+--------+------+
+1 row in set (0.001 sec)
+
+MariaDB [batch9am]> select * from fees limit 1;
++-----+------+-------+----------+------+
+| fid | sid  | fees  | discount | paid |
++-----+------+-------+----------+------+
+| 101 |    1 | 10000 |     1000 | 4000 |
++-----+------+-------+----------+------+
+1 row in set (0.000 sec)
+
+MariaDB [batch9am]> insert into address values(101, 1, 'malviya nagar', 'jaipur', 'raj'), (102, 2,
+    -> 'raja park', 'jaipur', 'raj'), (103, 4, 'tilak nagar', 'delhi', 'delhi'), (104, 6, 'patel agar', 'indore',
+    -> 'mp'), (105, 7, 'karol bagh', 'delhi', 'delhi'), (106, 9, 'vaishali nagar', 'jaipur', 'raj');
+Query OK, 6 rows affected (0.024 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [batch9am]> select * from address;
++-----+------+----------------+--------+-------+
+| aid | sid  | street         | city   | state |
++-----+------+----------------+--------+-------+
+| 101 |    1 | malviya nagar  | jaipur | raj   |
+| 102 |    2 | raja park      | jaipur | raj   |
+| 103 |    4 | tilak nagar    | delhi  | delhi |
+| 104 |    6 | patel agar     | indore | mp    |
+| 105 |    7 | karol bagh     | delhi  | delhi |
+| 106 |    9 | vaishali nagar | jaipur | raj   |
++-----+------+----------------+--------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [batch9am]> update address set street='patel nagar' where aid=104;
+Query OK, 1 row affected (0.016 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [batch9am]> select sid from student where course='python' or course='advance python';
++-----+
+| sid |
++-----+
+|   1 |
+|   4 |
+|   9 |
++-----+
+3 rows in set (0.001 sec)
+
+MariaDB [batch9am]> select max(fees) from fees where sid=1 or sid=4 or sid=9;
++-----------+
+| max(fees) |
++-----------+
+|     10000 |
++-----------+
+1 row in set (0.004 sec)
+
+MariaDB [batch9am]> select max(fees) from fees where sid in (1, 4, 9);
++-----------+
+| max(fees) |
++-----------+
+|     10000 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [batch9am]> select max(fees) from fees where sid in (select sid from student where course='python' or course='advance python');
++-----------+
+| max(fees) |
++-----------+
+|     10000 |
++-----------+
+1 row in set (0.012 sec)
+
+MariaDB [batch9am]> select sum(fees) from fees where sid in (select sid from student where course='python' or course='advance python');
++-----------+
+| sum(fees) |
++-----------+
+|     10000 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [batch9am]> select sum(fees) - sum(paid) from fees where sid in (select sid from student where course='python' or course='advance python');
++-----------------------+
+| sum(fees) - sum(paid) |
++-----------------------+
+|                  6000 |
++-----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [batch9am]>
