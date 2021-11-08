@@ -1,0 +1,149 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+%matplotlib inline
+
+import warnings
+warnings.filterwarnings(action ='ignore')
+
+iris = sns.load_dataset('iris')
+tips = sns.load_dataset('tips')
+fmri = sns.load_dataset('fmri')
+dots = sns.load_dataset('dots')
+titanic = sns.load_dataset('titaninc')
+diamonds = sns.load_dataset('diamonds')
+
+>> extrasss 
+palette = sns.cubehelix_palette (light = 0.5, n_colors =6)
+g.fig.autofmt_xdate()
+kde= kernal density estimation
+
+f, ax = plt.subplots(figsize= (6,6))
+cmap=sns.cuvehelix_palette(as_cmap = True, dark = 0, light =1, reverse = True)
+
+sns.relplot()   #Relational plotin
+    > x = 'total_bill'
+    > y = 'tip'
+    > lw = 1
+    > data = tips ; fmri.query ("region == 'frontal'") ; diamonds.sort_values('color')
+    > hue = "smoker" ; 'coherence' # color
+    > style = "time" ; 'choice' # symbol
+    > size = "size" # size
+    > sizes = (15,200)
+    > palette = ['ch:r =0.5, l = 0.95']
+    > kind = "line"
+        >> ci = True ; 'sd' ; 68  #confidence interval
+        >> esitmator = None 
+        >> err_style = "bars"
+    > sort = True
+    > markers = True
+    > dashes = False
+    > units = 'subject'
+    > col = "region"
+    > col_wrap =3
+    > row = 'event'
+    < height = 3
+
+sns.lineplot()
+    > data = 'tip'
+    > x = 'bill'
+    > y = 'time' 
+
+sns.scatterplot()
+    > hue= tip['day']
+    > pallet = 'rainbow'
+    > s =20
+    > size = tip['time']
+
+sns.barplot()
+    > dodge = False
+    > orient = 'h'
+
+sns.catplot()
+    > jitter = False
+    > order = ['yes', 'no']
+
+sns.swarmplot()
+
+sns.boxplot()
+    showmeans=True, 
+    whiskerprops={'color': 'red'}, 
+    capprops={'color': '#123456'},
+    showfliers=False, 
+    showcaps=False
+    dodge = False
+
+sns.boxenplot()
+
+sns.countplot()
+
+sns.pointplot() #confidence interval
+
+
+
+
+sns.displot()
+    > hist = False
+    > kde = False
+    > hist_kws= {'ec': 'k', 'color': 'white'}
+    > kde_kws = {'ec': 'k', 'color': 'white'}
+    > ruge = True
+    > bins = 30
+    > ax = ax2
+
+sns.kdeplot()
+    > shade = True
+    > cbar = Ture
+    > bw = 1 # bandwith
+    > cut =1 # cut
+
+sns.jointplot()
+    kind = 'hex' ; 'kde'
+
+g = sns.jointplot(x,y,kind = 'kde', color = 'm')
+g.plot_joint(plt.scatter, c = 'w', s = 30, linewidth = 1, marker = '+')
+g.ax_joint.collections[0].set_alpha(0)
+
+f, ax = plt.subplots(figsize= (6,6))
+cmap=sns.cuvehelix_palette(as_cmap = True, dark = 0, light =1, reverse = True)
+sns.kdeplot(x,y, cmap = cmap , n_levels= 60, shade =True)
+
+
+sns.pairplot()
+
+g= sns.PairGrid(iris)
+g.map_diag(sns.kdeplot)
+g.map_offdiag(sns.kdeplot, n_levels = 10)
+
+
+sns.violinplot()
+    split =   True
+
+sns.pointplot()
+
+
+sns.regplot()
+
+sns.lmplot()
+    x_estimator = np.mean
+    ci = None
+    scatter_kws = {'s': 80}
+    order = 1
+    robust = True # to remove the outliers
+
+
+
+Controlling ploted figure aesthetics
+
+sns.set_style('whitegrid')
+    dark
+    ticks
+sns.despine() # to remove right spince
+    left = True
+    bottom = False
+
+sns.axes_style()
+
+plt.axis("off")
+
+streamlit, dash    

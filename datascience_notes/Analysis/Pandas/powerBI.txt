@@ -1,0 +1,35 @@
+m codee
+
+rooling Calendar
+= List.Dates(Source, Number.From(DateTime.LocalNow())- Number.From (Source),#duration (1,0,0,0))
+
+
+>>>>> visuals
+
+KPI
+Cards
+Treemap
+matrix
+slicer
+linechart
+areachart
+stackareachart
+gaugechart
+donatcharts
+
+
+>analytics
+trendline
+forecast
+
+> edit interaction
+
+> adding & Linking Bookmarks
+
+> what if parameters
+
+> Managing & Viewing As Roles
+
+>  Visualization market place
+
+> Deskto and mobile 

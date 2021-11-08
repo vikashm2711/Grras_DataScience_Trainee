@@ -1,0 +1,162 @@
+no,question,points,ans
+1,Which data type among the following is immutable,1,String
+2,Python is which type of language,1,Dynamic
+3,What is Maximum possible length of identifier,1,None of these
+4,In which year was the Python language developed?,1,1989
+5,Which is the correct extension of python file,1,.py
+6,What do we use to define a block of code in Python language?,1,Indentation
+7,Which of the following declaration is incorrect,1,123x_;abc@123;
+8,Which of the following is incorrect,1,"a, b, c = 123"
+9,"What will be the output of this code?
+a = 10
+b = 20
+c = 2
+while a<b:
+    c += 2
+    a += 2
+print(c)",2,12
+10,"What will be the output of the code?
+i = 1
+while True:
+    if i%3 == 0:
+        break
+    print(i)
+ 
+    i + = 1",2,error
+11,"What will be the output of the code?
+l = [10, 12, 'hello', 'bye', 34, 56]
+for i in l:
+    if len(str(i))%2 == 0:
+        break
+    print(len(i))",0,-
+12,"What will be the output of the following?
+1 + 2 + 3/6 * 10 // 9",2,3
+13,"What should be filled in the line 5 so output become 3?
+
+1. str1=""hello""
+2. c=0
+3. for x in str1:
+4.    if(x!=""l""):
+5.        _______
+6.    else:
+7.        pass
+8. print(c)",2,c=c+1
+14,"str1=""learn python""
+
+str2=""""
+
+str3=""""
+
+for x in str1:
+
+    if(x==""r"" or x==""n"" or x==""p""):
+
+        str2+=x
+
+    if(x==""r"" or x==""e"" or x==""a""):
+
+        str3+=x
+
+print(str2,end="", "")
+print(str3)",2,"rnpn, ear"
+15,Which of the following is a valid for loop in Python?,2,"for i in range(0,n):"
+16,A while loop in Python is used for what type of iteration?,2,indefinite
+17,Which of the option below is correct?,1,import requests
+18,"How many time this loop will run?
+for i in range(-3):
+    pass",2,0
+19,"What is the output of this code?
+
+i = 0
+for i in range(1, 10):
+    pass
+print(i)",2,9
+20,Which of the following is considered as infinite loop?,2,while 1:
+21,"What will be the number of lines drawn in each case, assuming that the turtle module has been imported:
+pen = turtle.Pen()
+Case 1:
+for i in range(0,10):
+	pen.forward(100)
+	pen.left(90)
+
+Case 2:
+fo...",2,"10, 9"
+22,"In how many lines there is logical error to get the output as SQUARE?
+
+import turtle
+t=turtle.Pen()
+for i in range(1,4):
+	t.forward(60)
+	t.left(45)",2,2
+23,"What will be the output of the following Python code?
+
+import turtle
+t=turtle.Pen()
+for i in range(0,4):
+	t.forward(100)
+	t.left(90)
+ 
+t.up()  
+t.left(90)
+t.forward(200)
+for i in range(0,4):
+	t.fo...",2,1 Square
+24,"What should be replaced in blank line given as argument to left to get the output as STAR?
+
+import turtle
+t=turtle.Pen()
+for i in range(0,5):
+        t.left(_________)
+        t.forward(100)",2,144
+25,Which of the following is Exit control loop in python ?,2,None of the above
+26,"We have a string
+""****************************   hello world            **********************""
+We need output of the string as 
+""world""
+Which set of operations/functions we need to apply on strin...",2,strip strip split indexing
+27,"What should be the value of a so that the output becomes as follows:
+
+a = ?
+print(a)
+
+output:
+(""CheckCheckCheck"")",3,"(""Check"")*3"
+28," What should be replace in blank space to get output as 33?
+
+names1 = ['Amir', 'Bear', 'Charlton', 'Daman']
+names2 = names1
+names3 = names1
+
+names2[0] = 'Alice'
+names3[1] = 'Bob'
+
+sum = 0
+for ls i...",3,if if
+29,"Which should we write to get the output as NEWYORK or to access NEWYORK?
+
+data = {1: {
+        ""id"" : 390669115,
+        ""name"" : ""ProgramState"",
+        ""dataTypeName"" : ""text"",
+        ""descript...",4,data[1]['cachedContents']['top'][0]['item']
+30,"What should be replaced in line 5 blank space to get the output as 1?
+
+1. myList = [1, 5, 5, 5, 5, 1]
+2. max = myList[0]
+3. indexOfMax = 0
+4. for i in range(1, len(myList)):
+5.     if myList[i] __...",4,>
+31,"What should be replaced in blank space to get the output as 
+Output:
+     0
+     1
+     2
+
+i = 0
+while i < 5:
+    print(i)
+    i += 1
+    if i == 3:
+        ________
+else:
+    print(0)",3,Break

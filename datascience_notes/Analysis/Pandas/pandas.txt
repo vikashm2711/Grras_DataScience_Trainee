@@ -1,0 +1,506 @@
+html data fetch
+    > sqlalechemy
+    > lxml
+    > html5lib
+    > BeautifulSoup4
+
+
+>> importing
+with open ('titanic.csv') as f:
+    text=f.readlines()
+
+
+
+pd.read_
+    csv
+        > index_col = "pclass"
+        > header = 0 # very first row as column or header= None 
+        > names = ["alive", "class", "gender","age"] #newcolumn names
+        > usecols= ["survived", "pclass"]
+        > index_col = ["pclass"]
+        > squeeze = True #if only one column to series
+        > skiprows =3
+        > skipfooter = 2
+        > parse_dates=['Startdate']
+    excel
+        > usecols = "c:E" or [0,3,4]
+        > sheet_name= "sheet1"
+    html(url)[0]
+        > url = link
+
+df.to_csv("titanic_imp.csv")
+    > index = False
+
+
+
+
+pd.DataFrame
+pd.series()
+    > index =[1,2,3]
+    > name = 'sales'  #naming a data series
+    > data = ["a",1,True] # to add rows
+pd.concat
+df.append(new, ignore_index=True) 
+pd.merge(left,right, ,)
+pd.options.display.max_rows
+.to_frame()
+
+to create your own data frame
+from numpy.random import randn
+df = pd.DataFrame(dict(time = np.arrange(500), value = randn(500).cumsum()))
+
+.astype(int)
+pd.options.display.min_rows
+left.joint(right)
+
+>> to drop column
+df.drop(labels= ['Success'], axis = 1 , inplace = True)
+
+df1+df2
+df1.add(df2, fill_value=0)
+
+>> Merging joining concat
+df1.append(df2, ignore_index=False)
+pd.merge(df1, df2, how="outer", on = "Athlete", suffixes=("2004,2008"))
+df1.join(df2, how="outer", lsuffix="_2004", rsuffix="_2008") #NEVER USE JOIN
+pd.concat([df1,df2], ignore_index=False, keys = [2004,2008], names=['year'])
+#OUTER JOIN:
+    > df1.merge(df2, how= 'outer', on = 'Athlete', suffixes=("_2004", "_2008"), indicator= True)
+
+#INNER JOIN:
+    > df1.merge(df2, how= 'inner', on = 'Athlete', suffixes=("_2004", "_2008"), indicator= True)
+
+#OUTER JOIN wihtout INTERSECTION:
+    > df1.loc[df1._merge != 'both']
+
+#OUTER JOIN wihtout LEFT INTERSECTION:
+    > df1.loc[df1._merge == 'left_only']
+
+#OUTER JOIN wihtout RIGHT INTERSECTION:
+    > df1.loc[df1._merge == 'right_only']
+
+#LEFT JOIN:
+    > df1.merge(df2, how= 'left', on = 'Athlete', suffixes=("_2004", "_2008"), indicator= True)
+
+#RIGHT JOIN:
+    > df1.merge(df2, how= 'right', on = 'Athlete', suffixes=("_2004", "_2008"), indicator= True)
+
+    > on = ["Athlete", "Medal"]
+    > left_on = 
+    > right_on =
+    > right_index= True
+
+>> TRANSFORM
+
+df.T or df.transpose()
+
+>> PIVOT
+
+df.pivot() ##NOT TO USE PIVOT, USE GROUP BY UNSTACK
+    > index= "Country"
+    > columns = "Medal"
+    > values = "Count"
+
+.unstack()
+    > level = -1
+    > fill_value = 0
+
+#stack() ##panda seriers 
+
+df["All"]=agg.sum(axis=1)
+df.loc["All"] = agg.sum(axis=0)
+
+df.pivot_table()
+    > index =
+    > columns =
+    > values =
+    > aggfunc =
+    > fillvalue = 0
+    > margins = True #addition of columns and raws
+    > margins_name = "Total"
+
+pd.crosstab(df.sex, df.pclass, margins=True)
+    > index =
+    > columns =
+    > normalize = True
+    > aggfunc =
+    > values = 
+
+df.melt()
+    > id_vars= "Country"
+    > value_vars= ['gold', 'silver', 'bronze' ]
+    > var_name = "Medal"
+    > value_name= "Count"
+
+>> feature and preparation
+    > df1.add(df2)
+        fill_value=0
+    > df1.mul(df2)
+    > df.floordiv
+
+
+    titanic['child']=pd.series(np.where(titanic.age < 18, "yes", "No"))
+
+    category bins
+    age_bins=[0,10,18,30,55,100]
+    groupnames= ["child","teenager","young_adult", "adult", "elderly"]
+    cats=pd.cut(titanic.age, age_bins, right= False, labeles= groupnames)
+
+    titanic["farecut"]= pd.cut(titanic.fare, bins=5, precision =2)
+    pd.qcut(titanic.fare, 5) #discreatization equaly values
+    gname=["verycheap","cheap","moderate","expensive", "veryexpensive"]
+    titanic['farecut']=pd.qcut(titanic.fare, [0,0.1,0.25,0.5,0.9,1], precision =0, labels=gname )
+
+>> sample
+    > df.sample
+        > n =7
+        > random_state = 123
+        
+>> Cleaining data
+titatinic.survived.replace(to_replace = ["Yes", "no"], value=[1,0])
+summer.rename(columns = {"Athlete name": "Athlete_Name"})
+pd.to_numeric(titanic.fare)
+titanic.fare.astype("float")
+titanic.isna().
+    > sum(axis=0)
+    > any(axis=0)
+titanic.notna()
+    > all(axis=0)
+sns.heatmap(titanic.notna())
+titaninc.age.value_counts(dopna=False) #how many nan values 
+
+>> nothing, removing, replacing
+titaninc.age.mean()
+    > skipna= True
+titanic.dropna()
+    > thresh = 8
+    > subset
+    > axis
+    > how =
+        >> any
+        >> all
+titanic.age.fillna(mean, inplace=True)
+
+>> duplicates
+df.duplicated(keep=False)
+    > keeep = first
+    > subset =
+titanic.drop(index=[891,892,893],inplace=True)
+df.drop_duplicates(inplace=True)
+    > ignore_index= True
+
+>> outliers
+df.boxplot("age") #for outliers
+
+fare_cap=250
+titanic.loc[titanic.fare > fare_cap , "fare"] = fare_cap
+
+fare_floor=5
+titanic.loc[titanic.fare < fare_floor, "fare"] = fare_floor
+
+##dummies
+pd.get_dummies(titanic, columns=['sex','pclass'], drop_first=True)
+
+>> Dataframe Methods
+df.info()
+df.describe()
+    > include = "O" # all objective
+df.to_csv
+df.columns = ['alive', 'gender'] # to rename the columna names
+df.index.name= "class" #to rename the index
+
+df.xs > cross section
+df.loc []
+df.iloc[]
+
+df.set_index()
+df.resetindex()
+df.reindex() #reindexing
+df.dropna() > remove all the Nan
+df.fillna
+df.drop
+df.groupby
+df.sort_values
+df.isnull()
+df.pivot_table()
+df.isna()sum()
+df.name.copy()
+df.equals()
+
+
+
+max
+min
+sum
+count
+value_count()
+nlargest()
+nsmallest()
+
+unique()
+nuique()
+apply
+idmax()
+argmax()
+argmin()
+corr()
+
+len(df)
+round(df,2)
+min(df)
+
+
+>> Attrivutes
+df.shape
+df.size
+df.set_index
+df.columns
+describe
+transpose
+
+
+>> Methods chaining
+df.mean().sort_values().head(2)
+
+
+>> panda series
+.head()
+.tail()
+.shape()
+len()
+.index
+.to_frame() >> to convert pandas series to Dataframe
+
+
+>> Analyzing numerical series
+df.describe()
+df.count()
+df.size
+len(df)
+df.sum()
+    > skipna = True
+sum(df)
+df.mean()
+df.median()
+df.std()
+df.max()
+df.min()
+df.unique()
+df.nunique()
+    > dropna = True
+df.value_counts()
+    > sort = True
+    > dropna = False
+    > ascending = True
+    > normalize = True # relative frequency
+    > bins = 5 #equal width range
+
+>> Analyzing non-numerical series
+df.head()[]
+df.shape
+df.describe()
+df.dtype
+df.count()
+df.size
+df.min()
+df.max()
+df.unique()
+df.nunique()
+df.value_counts()
+
+>>indexing sliceing
+df.loc      #label based indexing
+    > [(slice (None), slice("female")), :]
+df.iloc     #postin based indexing
+df.index
+df.sort_index()
+    > ascending= False
+    > inplace = True
+    > na_position ="last"
+df.index.is_unique()
+df.columns.tolist()
+df.reset_index()
+    > drop = True #drop index column
+df.set_index()
+df.index.name 
+df.index.is_unique
+df.index.size 
+df.rename(mapper = {"indexname":'newindexname'}, axis = "index")
+df.rename(index={"indexname":'newindexname'}, inplace=True)
+df.rename(columns = {"indexname":'newindexname'})
+df.drop(columns = ["a","b"])
+    > columns
+df.drop(labels = "a", axis = "columns")
+del df["a"]
+df.drop(index = "a")
+1996 in df.year.values #to check number in array
+df.name.isin(["pok"]).any()
+df.insert(loc=5,column="newname", value= relatives)
+df.replace(0,'zero ')
+df.swaplevel() # swaps 2index
+~
+
+d={}
+for i in df['Skills and Perks'].values:
+    for j in i:
+        if j not in d:
+            d[j]+=1
+        else:
+            d[j]=1
+
+top_10=sorted(d.items(), key = lambda x: x[1], reverse= True)[:10]
+
+df['skills and perks'].apply (lambda x: True if skill.lower in list (map(lambda x:x.lower(),eval(x)))else False)
+
+>> largest and smallest and sorting
+df.nlargest()
+    > n =5
+    > 
+df.nsmallest()
+df.sort_values()
+    > ascending= True
+
+>> to extract largest index
+df.age.idmax()
+df.age.idmin()
+
+>> Manipulating
+df.iloc[]=4
+.round(2)
+| or
+& and
+~ Not
+.between(x,y)
+    > inclusive
+.isin(list)
+.unique()
+.any()
+.all()
+
+.is_view
+.is_copy is None
+
+.is_copy() # from where we copied
+
+.rank() #for ranking the values
+    > ascending = False
+    > method = "min"
+
+.nunique()
+.nlargest()
+    > columns
+
+
+
+
+>> sorting
+df.name.sort_values()
+df.sort__values()
+    > by = 'age'  or ['age','class','sex']
+    > ascending = True or [True, True, False]
+    > ignore_index =True
+
+df.sort_index()
+df.swaplevel()
+
+
+>> Summary Stastics
+df.head()
+df.describe()
+df.count()
+df.mean()
+df.sum()
+df.fare.cumsum()    #cummilative sum
+df.corr()
+df.name.corr(df.name2)
+df.agg(["mean","std","min","max", "median"])
+df.agg({"column1": "mean","column2": ["min", "max"]})
+
+
+>> apply function
+df.min()
+    > axis = 0
+df.apply()
+    > (lambda x: x.max() - x.min(), axis =1 )
+df.map()
+    > (lambda x: x.max() - x.min(), axis =1 )
+df.applymap() # to all elements 
+    > (lambda x: x.max() - x.min(), axis =1 )
+
+
+>> String manipulation
+hello = "Hello World"
+len(hello)
+hello.lower()
+hello.upper()
+hello.title()
+hello.split(" ")
+hello.replace("hello", "Hi")
+
+df.str.lower() # string opertaion on series
+df.cname.str.split(" ", n=1)
+    > n = 
+    > expand = True # return columns
+    > str.split('[+|-]', expand=True)  ## multiple spliting
+
+df.str.contains("chief")
+df.fare.str.replace("$","")
+df.name.str.strip()
+df.name.str.rstrip()
+df.name.str.lstrip()
+df["name"].apply(lambda x: True if x.lower()[0] == letter else False)
+df["description"].apply(lambda x: True if "school" in str(x).lower() or "college" in str(x).lower() else False)
+
+conda update --all, 
+ pip uninstall -y numpy,
+ pip uninstall -y setuptools,
+ pip install setuptools==39.1.0,
+ pip install numpy
+
+
+ df.assign(**dict(zip('abm', df.moneys.str)))  #tuple columns to expanded columns
+ df[['min','max','Month']]=pd.DataFrame([*df.moneys], df.index) #easy method to expand tuples
+ df[["Date_time","Apply_date"]]=df[["Date Time", "Apply by Date"]].apply(pd.to_datetime) ## to change multiple columns to datetime
+
+
+>>> GROUP BY
+df.groupby('sex').mean()
+
+>> advanced aggregation with agg()
+titanic.groupby("sex").agg(["mean", "sum", "min", "max"])
+titanic.groupby("sex").agg({"survived": ['sum', 'mean'], "pclass":'mean'})
+titanic.groupby("sex").agg(survival_rate = ("survived", "mean")) ##LABLE TO Dataframe
+
+>> TRANSFORM
+titanic['survival_rate']=titanic.groupby(["sex", "pclass"]).survived.transfor("mean")
+titanic["outliers"] = abs(titanic.survived - titanic.survival_rate)
+
+titanic[titanic.outliers > 0.85]
+
+titanic["group_mean_age"]= titanic.groupby(["sex", "pclass"]).age.transfor("mean")
+titanic.age.fillna(titanic.group_mean_age, inplace=True)
+
+
+>> strftime
+temp = pd.read_csv("temp.csv", parse_dates=["datetime"])
+
+pd.to_datetime()
+    > errors = "coerce"
+
+pd.date_range()
+    > start
+    > end
+    > freq = H, 2H, D, 3D8H, M, W-Wed, d, Q, Qs, QS-May, A, AS, A-Jul, pd.Dateoffset(months =1)
+    > periods =6
+
+#Downsampling
+temp.resample("D")
+    > .first()
+    > .last()
+    > .mean()
+    > .sum()
+    > loffest='14D'
+    > kind = "period"
+
+
+temp_d.reindex(birthd,  method= "nearest")

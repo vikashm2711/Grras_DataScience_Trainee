@@ -1,0 +1,212 @@
+import matplotlib.pyplot as plt
+plt.rcParams['figure.figsize'] =11,5
+plt.rcParams['figure.dpi'] =100
+
+
+--->extrass
+plt.figure(facecolor ='black')
+ax = plt.gca()
+
+
+df.plot()
+    > subplots = 
+    > layout = (1,2)
+    > figsize = (15,12)
+    > fontsize = 13
+    > c ="r"  #color
+    > colormap = "viridis"
+    > marker = "x" '+' 'ro:' ''ro-.' 'yd' '--' 'rx' 'r^' 'r1' 'r2' 'r3' 'r4' 'r5'
+    > size = 20
+    > ls ="--" #linestyle
+    > lw =2
+    > mfc = "black" #marker face color
+    > mec = "grey" #marker edge color
+    > alpha = 0.5 #transperancy
+    > ms = 3 #marker size
+    > label = {'fontsize': 15, 'color': '#abc123', 'fontfamily': 'monospace'}
+    > plt.xlabel ("x", fontdict = label)
+    > fontdict = label
+    > linestyle = ":"
+    > sharex= False
+    > sharey = False
+    > xlim = (200,400)  #xlimits
+    > ylim = (20,40)    #ylimits
+    > xticks = [i for i in range (0,500,50)]
+    > yticks =
+    > rot = 45 #rotation of xticks
+    > kind =
+        >> line
+        >> hist
+            > bins = 30
+            > ec = "b" #edgecolor
+        >> bar
+        >> barh
+        >> pie
+            > labels = ['a', 'b', 'c']
+            > autcopct ='%.f'
+            > frame = False
+            > shadow = True
+            > explode =  [0,0,0.1] #to explode {% resetcycle %}
+            > pctdistance = 0.9 #percentage distance from center
+            > labeldistance = 1.1 #label distance from center
+            > textprops = {'color': 'blue', 'fontsyle': 'italics'} #labels
+            > wedgeprops = { 'ls': '--'} #edges 
+            > startangle =  60
+
+        >> scatter
+            >>> x= "age"
+            >>> y = "fare"
+            >>> c = "red" or color = ["red", "blue"]
+            >>> c = "survived"  #3dimensional
+            >>> color = iris['species'].map({'setosa': 'red', 'virfinica':'blue', 'versicolor':'green'}) 
+            >>> plt.scatter(iris['sepal_length'], iris['petal_length'], marker = '*', c=color)
+
+
+label = {'fontsize': 15, 'color': '#abc123', 'fontfamily': 'monospace'}
+
+plt.title("New Dataset")
+    > fontsize = 15
+    > fontdict = label
+
+plt.legend()
+    > loc = 3 or loc= [0,0]
+    > fontsize = 12
+    > facecolor= "black"
+    > labelcolor = "white"
+    > shadow = True
+
+plt.xlabel("xname", fontsize =13)
+plt.ylabel("yname", fontsize =13)
+
+plt.xticks(range(1,106,5))
+plt.yticks()
+plt.tick_params()
+    > size =12
+    > color = "blue"
+    > width = 2
+    > labelsize = 12
+    > labelcolor = "red"
+
+plt.grid()
+    > lw ="0.2"
+    > ls ="--"
+
+
+multiple ploting
+    > plt.plot(tip['tip'], 'ro--', tip['total_bill'], 'go--') 
+    > lines = plt.plot(iris['sepal_length'], iris['petal_length'], 'o', iris['sepal_width'], iris['petal_width'], 'r*')
+    > plt.legend(lines, ['Length', 'Width'])
+
+df.hist()
+    > bins
+    > xlabelsize =15
+    > ylabelsize =15
+
+plt.hist(df.age.dropna())
+    > density = True
+    > cumlative = True
+
+plt.fill_bet 
+
+plt.style.available
+plt.style.use("classic")
+plt.figure()
+    > figsize = (12,5) 
+    > dpi = 150
+
+plt.savefig('fig.png')
+
+plt.show()
+
+plt.text()
+
+df.boxplot("age") #for outliers
+
+----------------Animation ploting----------------------------
+import matplotlib.pyplot as plt
+plt.rcParams['figure.figsize'] =11,5
+plt.rcParams['figure.dpi'] =100
+
+from matplotlib.animation import FuncAnimation
+
+
+#### basic working of animation
+fig, ax = plt.subplots()
+x = np.random.randint(1,10,10)
+ax.plot(x, 'ro--')
+def animatefunc(default):
+    global x
+    ax.clear ()
+    x = np.delet(x,0)
+    x = np.append(x, np.random.randint(1,20))
+    ax.plot(x, 'ro--')
+
+f = FuncAnimation(fig, animatefunc)
+plt.show()
+
+####live cpu procession
+import psutil
+from time import sleep
+
+> psutil.version_info
+> psutil.virtual_memory()
+> psutil.cpu_count()
+> psutil.cpu_stats()
+> psutil.cpu_percent()
+
+cpu=[]
+for i in range(10):
+    cpu.append(psutil.cpu_percent())
+    sleep(1)
+
+fig, ax = plt.subplots()
+per = cpu.copy()
+ax.plot(per, 'ro--')
+def animatefunc(default):
+    global per
+    ax.clear ()
+    per = np.delet(per,0)
+    per = np.append(per, psutil.cpu_percent())
+    ax.plot(per, 'ro--')
+
+f = FuncAnimation(fig, animatefunc)
+plt.show()
+
+
+######
+
+%%writefile colorgenerator.py
+'''
+This module is used to genrate random hax code
+'''
+import numpy as np
+def colorgenerator():
+    val = list ("abcdef0123456789")
+    color = "".join(np.random.choice(val, 6))
+    return "#" + color
+
+colorgenerator()
+
+### axis
+
+fig = plt.figure()
+
+ax1=fig.add_axes([0,0,0.5,0.5])
+ax2=fig.add_axes([0.5,0.5,0.5,0.5])
+ax3=fig.add_axes([0,0,0.5,0.5])
+ax4=fig.add_axes([0,0,0.5,0.5])
+
+ax1.spines['left'].set_color('white')
+
+ax1.plot(tip["total_bill"])
+ax1.plot(tip["Tip"])
+
+for ax in (ax1, ax2):
+    ax.tick_params(labelcolor='White', labelsize = 10)
+
+plt.show()
+
+
+for i,p in zip (range(len(ax1.patches)), ax1.patches):
+    x, h = p.get_x(), p.get_height()
+    ax1.text(x,h,h, color ='r')
