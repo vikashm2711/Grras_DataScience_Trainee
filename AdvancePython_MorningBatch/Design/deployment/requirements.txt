@@ -1,0 +1,10 @@
+certifi==2021.5.30
+Flask 
+gunicorn==20.1.0
+importlib-metadata 
+itsdangerous 
+Jinja2 
+MarkupSafe 
+Werkzeug 
+wincertstore==0.2
+zipp 
