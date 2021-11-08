@@ -1,0 +1,12 @@
+def freq (list):
+    dict = {}
+    dict1 = dict.keys()
+    for i in list:
+        if i in dict1:
+            dict[i]=dict[i]+1
+        else:
+            dict[i]=1
+    return dict
+
+list = [1,1,12,2,1,2,3,3,4,4,4,5,5,5]
+print(freq(list))
