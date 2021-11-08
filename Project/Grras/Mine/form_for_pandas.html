@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title> SIGN UP FORM</title>
+        <style>
+            body{
+                background-image: url(image/form.jpg);
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            h1{
+                text-align: center;
+                padding: 20px;
+                font-size: 50px;
+                color: white;
+            }
+            h2{
+                text-align: center;
+                color: white;
+                
+            }
+            form{
+                top: 15%;
+                left: 35%;
+                position: absolute;
+                color: white;
+                background-color: rgb(5, 121, 255);
+                border-radius: 15px;
+                padding: 0px 30px 30px 30px;
+                width: 400px;
+                font-style: italic;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 15px;
+            }
+            input,select{
+                padding: 5px 62px 5px 5px;
+                margin: 2px 0;
+                <!-- box-sizing: border-box; -->
+                border-radius: 5px;
+
+            }
+            l1{
+                font-style:normal;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 15px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1 > INTERNSHIP</h1>
+        <div class='form'>
+            
+            <form method="POST" action="index.html">
+           
+                <h2> Search Your Internship</h2>
+                <br><label> Profile: </label>
+                <input type="text" name="profile" placeholder="prefered profile" class='inp'> <br>
+                
+                <br><label> Location: </label>
+                <input type="text" name="loc" placeholder="prefered location" class='inp'> <br>
+                
+
+                 <br><label> Skill: </label>
+                <input type="text" name="skill" placeholder="prefered skill" class='inp'>
+                
+                <br><label> Duration </label>
+                <select name='ccode'>
+                    <option name='1 Week'>1 Week</option>
+                    <option name='2 Weeks'>2 Weeks</option>
+                    <option name='4 Weeks'>4 Weeks</option>
+                    <option name='6 Weeks'>6 Weeks</option>
+                    <option name='1 Month'>1 Month</option>
+                    <option name='2 Months'>2 Months</option>
+                    <option name='3 Months'>3 Months</option>
+                    <option name='4 Months'>4 Months</option>
+                    <option name='5 Months'>5 Months</option>
+                    <option name='6 Months'>6 Months</option>
+                    <option name='12 Months'>12 Months</option>
+                    <option name='36 Months'>36 Months</option>
+                    <option name='24 Months'>24 Months</option>
+                </select>
+                
+                <br>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Internship &nbsp;&nbsp;
+                </label>
+
+                
+
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Internship with job offer
+                </label>
+
+
+
+                <br><input type="submit" class='inp'>
+            
+            </form>
+        </div>
+    </body>
+</html>

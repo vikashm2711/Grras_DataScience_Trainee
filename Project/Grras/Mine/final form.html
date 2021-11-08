@@ -1,0 +1,264 @@
+<htm>
+
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Roboto');
+            @import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                font: 14px/1 'Roboto', sans-serif;
+                color: #fff;
+                background: url('https://codepen.io/images/classy_fabric.png') #333;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            button,
+            input,
+            select,
+            textarea {
+                font-family: inherit;
+                font-size: 100%;
+                vertical-align: baseline;
+                border: 0;
+                outline: 0;
+                color: #fff;
+            }
+
+            button::-moz-focus-inner,
+            input::-moz-focus-inner {
+                border: 0;
+                padding: 0;
+            }
+
+            textarea {
+                overflow: auto;
+                vertical-align: top;
+                resize: none;
+            }
+
+            [placeholder]::-webkit-input-placeholder {
+                color: rgba(255, 255, 255, .8);
+            }
+
+            [placeholder]:hover::-webkit-input-placeholder {
+                color: rgba(255, 255, 255, .4);
+            }
+
+            [placeholder]:focus::-webkit-input-placeholder {
+                color: transparent;
+            }
+
+            [placeholder]::-moz-placeholder {
+                color: rgba(255, 255, 255, .8);
+            }
+
+            [placeholder]:hover::-moz-placeholder {
+                color: rgba(255, 255, 255, .4);
+            }
+
+            [placeholder]:focus::-moz-placeholder {
+                color: transparent;
+            }
+
+            [placeholder]:-ms-input-placeholder {
+                color: rgba(255, 255, 255, .8);
+            }
+
+            [placeholder]:hover:-ms-input-placeholder {
+                color: rgba(255, 255, 255, .4);
+            }
+
+            [placeholder]:focus:-ms-input-placeholder {
+                color: transparent;
+            }
+
+            form {
+                width: 400px;
+                margin: 50px auto;
+            }
+
+            input[type="text"] {
+                display: block;
+                width: 400px;
+                margin: 0 0 20px;
+                padding: 8px 12px 10px 12px;
+                border: 1px solid rgba(0, 0, 0, .5);
+                background: rgba(0, 0, 0, .25);
+            }
+
+            textarea {
+                display: block;
+                width: 400px;
+                height: 150px;
+                margin: 0 0 20px;
+                padding: 8px 12px 10px 12px;
+                border: 1px solid rgba(0, 0, 0, .5);
+                background: rgba(0, 0, 0, .25);
+            }
+
+            .radio {
+                position: relative;
+                display: inline-block;
+                margin: 0 20px 20px 0;
+            }
+
+            .radio input[type="radio"] {
+                vertical-align: middle;
+                opacity: 0;
+            }
+
+            .radio label {
+                vertical-align: middle;
+                cursor: pointer;
+            }
+
+            .radio input[type="radio"]+label:before {
+                content: '';
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin: -3px 5px 0 -15px;
+                vertical-align: middle;
+                font-size: 14px;
+                font-family: fontawesome;
+                line-height: 19px;
+                text-align: center;
+                border: 1px solid rgba(0, 0, 0, .5);
+                background: rgba(0, 0, 0, .25);
+            }
+
+            .radio input[type="radio"]+label:before {
+                border-radius: 50%;
+            }
+
+            .radio input[type="radio"]:hover+label:before {
+                content: '\f111';
+                font-size: 9px;
+                color: rgba(255, 255, 255, .4);
+            }
+
+            .radio input[type="radio"]:checked+label:before {
+                content: '\f111';
+                font-size: 9px;
+                color: rgba(255, 255, 255, .8);
+            }
+
+            .radio .sex {
+                font: 20px fontawesome;
+            }
+
+            input[type="submit"] {
+                display: block;
+                width: 150px;
+                margin: 0 0 20px;
+                padding: 8px 0 10px 0;
+                text-align: center;
+                border: 1px solid rgba(0, 0, 0, .5);
+                background: rgba(0, 0, 0, .25);
+            }
+                        [checkbox]::-webkit-input-checkbox {
+                color: rgba(255, 255, 255, .8);
+            }
+
+            [checkbox]:hover::-webkit-input-checkbox {
+                color: rgba(255, 255, 255, .4);
+            }
+
+            [checkbox]:focus::-webkit-input-checkbox {
+                color: transparent;
+            }
+
+            [checkbox]::-moz-checkbox {
+                color: rgba(255, 255, 255, .8);
+            }
+
+            [checkbox]:hover::-moz-checkbox {
+                color: rgba(255, 255, 255, .4);
+            }
+
+            [checkbox]:focus::-moz-checkbox {
+                color: transparent;
+            }
+
+            [checkbox]:-ms-input-checkbox {
+                color: rgba(255, 255, 255, .8);
+            }
+
+            [checkbox]:hover:-ms-input-checkbox {
+                color: rgba(255, 255, 255, .4);
+            }
+
+            [checkbox]:focus:-ms-input-checkbox {
+                color: transparent;
+            }
+
+            textarea, select, option {
+                border:none;
+                padding:5px;
+                font-size:14px;
+                color: #000000;
+                background: rgba(0, 0, 0, 0.1);    
+            }
+            select 
+            {
+                -webkit-appearance: none;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <form>
+           
+            
+                <h2 style= "text-align: center">INTERNSHIP FINDER</h2> <br>
+            
+            
+            <input type="text" placeholder="Location" />
+            <input type="text" placeholder="Duration" />
+            <input type="text" placeholder="Skills" />
+           
+            <br><label> Duration </label>
+                <select name='ccode'>
+                    <option name='1 Week'>1 Week</option>
+                    <option name='2 Weeks'>2 Weeks</option>
+                    <option name='4 Weeks'>4 Weeks</option>
+                    <option name='6 Weeks'>6 Weeks</option>
+                    <option name='1 Month'>1 Month</option>
+                    <option name='2 Months'>2 Months</option>
+                    <option name='3 Months'>3 Months</option>
+                    <option name='4 Months'>4 Months</option>
+                    <option name='5 Months'>5 Months</option>
+                    <option name='6 Months'>6 Months</option>
+                    <option name='12 Months'>12 Months</option>
+                    <option name='36 Months'>36 Months</option>
+                    <option name='24 Months'>24 Months</option>
+                </select> <br> <br>
+            
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Internship &nbsp;&nbsp;
+                </label>
+
+                
+
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Internship with job offer
+                </label><br> <br>
+
+            <input type="submit" value="Send" />
+        </form>
+    </body>
+</htm>
